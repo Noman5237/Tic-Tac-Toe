@@ -1,5 +1,5 @@
 # Tic Tac Toe
-This repository is the detail of a OOC-II Assignment for SWE 18.  
+This repository is the detail of a OOC-II Assignment for SWE 19.  
 
 You need to build a Tic Tac Toe game with simple AI.
 
