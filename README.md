@@ -9,11 +9,11 @@ The detailed requirements are in the issues of the repository.
 **PLEASE FOLLOW THIS PROPERLY.**
 
 1. Create a branch in this repository with your two-digit Student ID and Nickname. 
-   1. For example, Fahim's branch should be 01-fahim. Use all lowercase characters.
+   1. For example, Moshiur Rahman's branch should be 01-moshiur. Use all lowercase characters.
    2. There is a hyphen in between your ID and name.
    3. If your ID is one digit, use a leading zero.
 2. Create a folder in the `solutions` folder with the same as your branch name. Write everything in this folder only.
-   1. There is a `.keep` file in the solution folder. Do not do anything with this.
+   1. There is a `.gitkeep` file in the solution folder. Do not do anything with this.
    2. Do not mess up with anything outside your folder.
 3. Only commit and push in your branch.
 
