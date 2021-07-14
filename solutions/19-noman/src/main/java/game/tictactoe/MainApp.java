@@ -12,7 +12,7 @@ public class MainApp extends Application {
 		Label helloJavaFX = new Label("Hello JavaFX");
 		Scene scene = new Scene(helloJavaFX, 400, 400);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Hello");
+		primaryStage.setTitle("JavaFX");
 		primaryStage.show();
 	}
 }
