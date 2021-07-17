@@ -1,4 +1,4 @@
 module game.tictactoe {
 	requires javafx.controls;
-	exports game.tictactoe;
+	exports game.tictactoe.model;
 }
