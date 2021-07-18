@@ -26,7 +26,7 @@ public class BoardTest {
 	})
 	void testGetNSetCellState(int x, int y, CellState cellState) {
 		board.setCellState(x, y, cellState);
-		assertEquals(board.getCellState(x, y), cellState);
+		assertEquals(cellState, board.getCellState(x, y));
 	}
 	
 	@Test
@@ -34,7 +34,7 @@ public class BoardTest {
 	void testBoardIsEmptyAtStart() {
 		for (int y = 0; y < Board.SIZE; y++) {
 			for (int x = 0; x < Board.SIZE; x++) {
-				assertEquals(board.getCellState(x, y), CellState.EMPTY);
+				assertEquals(CellState.EMPTY, board.getCellState(x, y));
 			}
 		}
 	}
