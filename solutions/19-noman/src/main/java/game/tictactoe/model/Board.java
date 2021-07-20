@@ -2,8 +2,9 @@ package game.tictactoe.model;
 
 public class Board {
 	
-	private final CellState[][] cellStates;
 	public static final int SIZE = 3;
+	
+	private final CellState[][] cellStates;
 	
 	public Board() {
 		this.cellStates = new CellState[SIZE][SIZE];
@@ -14,11 +15,11 @@ public class Board {
 		}
 	}
 	
-	CellState getCellState(int x, int y) {
+	public CellState getCellState(int x, int y) {
 		return this.cellStates[y][x];
 	}
 	
-	void setCellState(int x, int y, CellState cellState) {
+	public void setCellState(int x, int y, CellState cellState) {
 		this.cellStates[y][x] = cellState;
 	}
 }
