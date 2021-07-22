@@ -4,11 +4,11 @@ import game.tictactoe.model.Board;
 import game.tictactoe.model.CellState;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Affine;
+import javafx.scene.transform.Scale;
 
-public class BoardView extends Pane {
+public class BoardView extends Canvas {
 	
 	private final GraphicsContext ctx;
 	
@@ -16,23 +16,23 @@ public class BoardView extends Pane {
 	private static final double LINE_WIDTH = RADIUS / 4.0;
 	private static final double OFFSET = 0.25;
 	
-	private final Affine affine = new Affine();
+	private Affine affine;
 	
 	public BoardView(double width, double height) {
-		Canvas canvas = new Canvas(width, height);
-		super.getChildren().add(canvas);
+		super(width, height);
 		
-		ctx = canvas.getGraphicsContext2D();
+		// graphics context
+		ctx = super.getGraphicsContext2D();
 		
-		// Transformation scale
-		affine.appendScale(width / ((double) Board.SIZE), height / ((double) Board.SIZE));
+		this.resize(width, height);
 		
-		ctx.setTransform(affine);
 		ctx.setLineWidth(LINE_WIDTH);
 		
 		// TODO: Themes
 		ctx.setFill(Color.LIGHTGRAY);
 		ctx.setStroke(Color.BLACK);
+		
+		this.reset();
 	}
 	
 	public void draw(Board board) {
@@ -70,7 +70,22 @@ public class BoardView extends Pane {
 		ctx.strokeLine(0, 2, Board.SIZE, 2);
 	}
 	
+	@Override
+	public void resize(double width, double height) {
+		super.resize(width, height);
+		
+		// transformation scale
+		affine = new Affine(new Scale(width / ((double) Board.SIZE), height / ((double) Board.SIZE)));
+		ctx.setTransform(affine);
+	}
+	
 	public Affine getAffine() {
 		return affine;
 	}
+	
+	@Override
+	public boolean isResizable() {
+		return true;
+	}
+	
 }
