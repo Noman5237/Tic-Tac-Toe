@@ -71,6 +71,6 @@ public class BoardView extends Pane {
 	}
 	
 	public Affine getAffine() {
-		return affine.clone();
+		return affine;
 	}
 }
