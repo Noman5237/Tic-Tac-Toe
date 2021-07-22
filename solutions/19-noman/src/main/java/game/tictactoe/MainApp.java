@@ -17,8 +17,8 @@ public class MainApp extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("JavaFX");
 		primaryStage.show();
-		GameManager.getInstance().setPlayer1(new UIPlayer(CellState.X));
-		GameManager.getInstance().setPlayer2(new RandomAIPlayer(CellState.O));
+		GameManager.getInstance().setPlayer1(new RandomAIPlayer(CellState.X));
+		GameManager.getInstance().setPlayer2(new UIPlayer(CellState.O));
 		GameManager.getInstance().start();
 	}
 }

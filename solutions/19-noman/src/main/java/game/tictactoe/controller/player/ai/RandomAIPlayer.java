@@ -23,6 +23,7 @@ public class RandomAIPlayer extends AIPlayer {
 		do {
 			x = random.nextInt(Board.SIZE);
 			y = random.nextInt(Board.SIZE);
+			// refactor to a smarter loop
 		} while (board.getCellState(x, y) != CellState.EMPTY);
 		
 		return new Move(x, y, super.getPlayerSymbol());
