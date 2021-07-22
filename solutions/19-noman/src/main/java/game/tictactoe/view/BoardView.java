@@ -16,6 +16,8 @@ public class BoardView extends Pane {
 	private static final double LINE_WIDTH = RADIUS / 4.0;
 	private static final double OFFSET = 0.25;
 	
+	private final Affine affine = new Affine();
+	
 	public BoardView(double width, double height) {
 		Canvas canvas = new Canvas(width, height);
 		super.getChildren().add(canvas);
@@ -23,7 +25,6 @@ public class BoardView extends Pane {
 		ctx = canvas.getGraphicsContext2D();
 		
 		// Transformation scale
-		Affine affine = new Affine();
 		affine.appendScale(width / ((double) Board.SIZE), height / ((double) Board.SIZE));
 		
 		ctx.setTransform(affine);
@@ -67,5 +68,9 @@ public class BoardView extends Pane {
 		// Horizontal Lines
 		ctx.strokeLine(0, 1, Board.SIZE, 1);
 		ctx.strokeLine(0, 2, Board.SIZE, 2);
+	}
+	
+	public Affine getAffine() {
+		return affine.clone();
 	}
 }

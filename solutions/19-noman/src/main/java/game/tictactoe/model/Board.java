@@ -20,6 +20,18 @@ public class Board {
 	}
 	
 	public void setCellState(int x, int y, CellState cellState) {
+		if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return;
 		this.cellStates[y][x] = cellState;
+	}
+	
+	public Board copy() {
+		Board clone = new Board();
+		for (int y = 0; y < SIZE; y++) {
+			for (int x = 0; x < SIZE; x++) {
+				clone.setCellState(x, y, this.getCellState(x, y));
+			}
+		}
+		
+		return clone;
 	}
 }
