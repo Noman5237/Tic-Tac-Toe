@@ -23,6 +23,7 @@ public class UIPlayer extends Player {
 			try {
 				Point2D point2D = boardView.getAffine().inverseTransform(mouseEvent.getX(), mouseEvent.getY());
 				Move nextMove = new Move(((int) point2D.getX()), ((int) point2D.getY()), super.getPlayerSymbol());
+				if (board.getCellState(nextMove.getX(), nextMove.getY()) != CellState.EMPTY) return;
 				GameManager.getInstance().setNextMove(nextMove);
 			} catch (NonInvertibleTransformException ignored) {
 			}
