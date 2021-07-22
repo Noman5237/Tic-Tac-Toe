@@ -15,6 +15,18 @@ public class Board {
 		}
 	}
 	
+	public Board(Board boardToCopy) {
+		this();
+		if (boardToCopy == null) {
+			return;
+		}
+		for (int y = 0; y < SIZE; y++) {
+			for (int x = 0; x < SIZE; x++) {
+				this.setCellState(x, y, boardToCopy.getCellState(x, y));
+			}
+		}
+	}
+	
 	public CellState getCellState(int x, int y) {
 		return this.cellStates[y][x];
 	}
@@ -24,14 +36,4 @@ public class Board {
 		this.cellStates[y][x] = cellState;
 	}
 	
-	public Board copy() {
-		Board clone = new Board();
-		for (int y = 0; y < SIZE; y++) {
-			for (int x = 0; x < SIZE; x++) {
-				clone.setCellState(x, y, this.getCellState(x, y));
-			}
-		}
-		
-		return clone;
-	}
 }

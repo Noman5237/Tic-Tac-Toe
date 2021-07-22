@@ -22,27 +22,32 @@ public class GameManager {
 	}
 	
 	public static GameManager getInstance() {
-		if (instance == null) {
-			instance = new GameManager();
+		if (GameManager.instance == null) {
+			GameManager.instance = new GameManager();
 		}
-		return instance;
+		return GameManager.instance;
 	}
 	
 	public void start() {
-		board = new Board();
-		currentPlayer = player1;
-		currentPlayer.promptForNextMove(board.copy());
+		this.board = new Board();
+		this.currentPlayer = this.player1;
+		this.currentPlayer.promptForNextMove(this.getCurrentBoard());
+	}
+	
+	public Board getCurrentBoard() {
+		return new Board(this.board);
 	}
 	
 	public void setNextMove(Move move) {
-		board.setCellState(move.getX(), move.getY(), move.getCellState());
-		if (currentPlayer == player1) {
-			currentPlayer = player2;
+		this.board.setCellState(move.getX(), move.getY(), move.getCellState());
+		if (this.currentPlayer == this.player1) {
+			this.currentPlayer = this.player2;
 		} else {
-			currentPlayer = player1;
+			this.currentPlayer = this.player1;
 		}
-		UIManager.getInstance().getBoardView().draw(board);
-		currentPlayer.promptForNextMove(board.copy());
+		Board currentBoard = this.getCurrentBoard();
+		UIManager.getInstance().getBoardView().draw(currentBoard);
+		this.currentPlayer.promptForNextMove(currentBoard);
 	}
 	
 	public void setPlayer1(Player player1) {
