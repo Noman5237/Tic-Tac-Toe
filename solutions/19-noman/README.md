@@ -11,7 +11,7 @@ A simple tic-tac-toe game built using JavaFX.
 For Mac/Linux
 
 ```
-./gradle run
+./gradlew run
 ```
 
 For Windows
