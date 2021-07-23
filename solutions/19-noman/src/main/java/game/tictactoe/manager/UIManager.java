@@ -14,8 +14,9 @@ public class UIManager extends Pane {
 		setPrefSize(400, 400);
 		
 		boardView = new BoardView(super.getWidth(), super.getHeight());
-		boardView.widthProperty().bind(this.widthProperty());
-		boardView.heightProperty().bind(this.heightProperty());
+		
+		bindBoundProperties();
+		
 		super.getChildren().addAll(boardView);
 	}
 	
@@ -31,6 +32,11 @@ public class UIManager extends Pane {
 		super.resize(width, height);
 		boardView.resize(width, height);
 		boardView.draw(GameManager.getInstance().getCurrentBoard());
+	}
+	
+	private void bindBoundProperties() {
+		boardView.widthProperty().bind(this.widthProperty());
+		boardView.heightProperty().bind(this.heightProperty());
 	}
 	
 	public BoardView getBoardView() {

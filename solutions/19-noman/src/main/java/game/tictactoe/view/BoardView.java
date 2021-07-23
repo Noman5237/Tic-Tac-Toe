@@ -22,17 +22,16 @@ public class BoardView extends Canvas {
 		super(width, height);
 		
 		// graphics context
-		ctx = super.getGraphicsContext2D();
+		this.ctx = super.getGraphicsContext2D();
 		
-		this.resize(width, height);
-		
-		ctx.setLineWidth(LINE_WIDTH);
+		this.ctx.setLineWidth(LINE_WIDTH);
 		
 		// TODO: Themes
-		ctx.setFill(Color.LIGHTGRAY);
-		ctx.setStroke(Color.BLACK);
+		this.ctx.setFill(Color.LIGHTGRAY);
+		this.ctx.setStroke(Color.BLACK);
 		
 		this.reset();
+		this.resize(width, height);
 	}
 	
 	public void draw(Board board) {
@@ -41,33 +40,33 @@ public class BoardView extends Canvas {
 			for (int x = 0; x < Board.SIZE; x++) {
 				CellState cellState = board.getCellState(x, y);
 				if (cellState == CellState.X) {
-					drawX(x + OFFSET, y + OFFSET);
+					this.drawX(x + OFFSET, y + OFFSET);
 				} else if (cellState == CellState.O) {
-					drawO(x + OFFSET, y + OFFSET);
+					this.drawO(x + OFFSET, y + OFFSET);
 				}
 			}
 		}
 	}
 	
 	private void drawX(double x, double y) {
-		ctx.strokeLine(x, y, x + RADIUS * 2, y + RADIUS * 2);
-		ctx.strokeLine(x + RADIUS * 2, y, x, y + RADIUS * 2);
+		ctx.strokeLine(x, y, x + BoardView.RADIUS * 2, y + BoardView.RADIUS * 2);
+		ctx.strokeLine(x + BoardView.RADIUS * 2, y, x, y + BoardView.RADIUS * 2);
 	}
 	
 	private void drawO(double x, double y) {
-		ctx.strokeOval(x, y, RADIUS * 2, RADIUS * 2);
+		this.ctx.strokeOval(x, y, BoardView.RADIUS * 2, BoardView.RADIUS * 2);
 	}
 	
 	public void reset() {
-		ctx.fillRect(0, 0, Board.SIZE, Board.SIZE);
+		this.ctx.fillRect(0, 0, Board.SIZE, Board.SIZE);
 		
 		// Vertical Lines
-		ctx.strokeLine(1, 0, 1, Board.SIZE);
-		ctx.strokeLine(2, 0, 2, Board.SIZE);
+		this.ctx.strokeLine(1, 0, 1, Board.SIZE);
+		this.ctx.strokeLine(2, 0, 2, Board.SIZE);
 		
 		// Horizontal Lines
-		ctx.strokeLine(0, 1, Board.SIZE, 1);
-		ctx.strokeLine(0, 2, Board.SIZE, 2);
+		this.ctx.strokeLine(0, 1, Board.SIZE, 1);
+		this.ctx.strokeLine(0, 2, Board.SIZE, 2);
 	}
 	
 	@Override
@@ -75,12 +74,12 @@ public class BoardView extends Canvas {
 		super.resize(width, height);
 		
 		// transformation scale
-		affine = new Affine(new Scale(width / ((double) Board.SIZE), height / ((double) Board.SIZE)));
-		ctx.setTransform(affine);
+		this.affine = new Affine(new Scale(width / ((double) Board.SIZE), height / ((double) Board.SIZE)));
+		this.ctx.setTransform(this.affine);
 	}
 	
 	public Affine getAffine() {
-		return affine;
+		return this.affine;
 	}
 	
 	@Override
