@@ -44,16 +44,25 @@ public class GameManager {
 		this.lastRoundWinnerPlayer = player1;
 		this.player1Score = 0;
 		this.player2Score = 0;
+		UIManager.getInstance().getScoreView().updatePlayer1Score(player1Score);
+		UIManager.getInstance().getScoreView().updatePlayer2Score(player2Score);
 		restart();
 	}
 	
 	private void updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning() {
 		Board currentBoard = this.getCurrentBoard();
 		UIManager.getInstance().getBoardView().draw(currentBoard);
-		if (this.getRoundStatus() == RoundState.RUNNING) {
+		RoundState roundStatus = this.getRoundStatus();
+		if (roundStatus == RoundState.RUNNING) {
 			this.currentPlayer.promptForNextMove(currentBoard);
 		} else {
-			System.out.println(this.getRoundStatus());
+			if (roundStatus == RoundState.X_WINS) {
+				++player1Score;
+				UIManager.getInstance().getScoreView().updatePlayer1Score(player1Score);
+			} else {
+				++player2Score;
+				UIManager.getInstance().getScoreView().updatePlayer2Score(player2Score);
+			}
 		}
 	}
 	

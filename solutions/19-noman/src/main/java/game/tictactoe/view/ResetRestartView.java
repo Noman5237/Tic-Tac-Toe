@@ -13,8 +13,8 @@ public class ResetRestartView extends HBox {
 		this.resetButton = new Button("RESET SCORE");
 		this.restartButton = new Button("RESTART GAME");
 		
-		this.resetButton.setPrefSize(200, 100);
-		this.restartButton.setPrefSize(200, 100);
+		this.resetButton.setPrefSize(200, 50);
+		this.restartButton.setPrefSize(200, 50);
 		
 		getChildren().addAll(this.resetButton, this.restartButton);
 		
