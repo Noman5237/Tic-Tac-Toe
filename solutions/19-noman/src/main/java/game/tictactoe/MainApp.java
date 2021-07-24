@@ -12,12 +12,12 @@ public class MainApp extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		GameManager.getInstance().setPlayer1(new UIPlayer(CellState.X));
+		GameManager.getInstance().setPlayer2(new UIPlayer(CellState.O));
 		Scene scene = new Scene(UIManager.getInstance());
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("JavaFX");
 		primaryStage.show();
-		GameManager.getInstance().setPlayer1(new UIPlayer(CellState.X));
-		GameManager.getInstance().setPlayer2(new UIPlayer(CellState.O));
 		GameManager.getInstance().start();
 	}
 }

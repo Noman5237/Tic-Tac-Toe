@@ -1,23 +1,28 @@
 package game.tictactoe.manager;
 
+import game.tictactoe.controller.player.UIPlayer;
+import game.tictactoe.controller.player.ai.RandomAIPlayer;
 import game.tictactoe.view.BoardView;
-import javafx.scene.layout.Pane;
+import game.tictactoe.view.PlayerChoiceView;
+import javafx.scene.layout.VBox;
 
-public class UIManager extends Pane {
+public class UIManager extends VBox {
 	
 	private static UIManager instance;
 	
 	private final BoardView boardView;
+	private PlayerChoiceView playerChoiceView;
 	
 	private UIManager() {
 		super();
 		setPrefSize(400, 400);
 		
+		playerChoiceView = new PlayerChoiceView(UIPlayer.class, RandomAIPlayer.class);
 		boardView = new BoardView(super.getWidth(), super.getHeight());
 		
 		bindBoundProperties();
 		
-		super.getChildren().addAll(boardView);
+		super.getChildren().addAll(playerChoiceView, boardView);
 	}
 	
 	public static UIManager getInstance() {
