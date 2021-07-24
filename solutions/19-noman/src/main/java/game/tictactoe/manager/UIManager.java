@@ -5,6 +5,7 @@ import game.tictactoe.controller.player.ai.RandomAIPlayer;
 import game.tictactoe.view.BoardView;
 import game.tictactoe.view.PlayerChoiceView;
 import game.tictactoe.view.ResetRestartView;
+import game.tictactoe.view.ScoreView;
 import javafx.scene.layout.VBox;
 
 public class UIManager extends VBox {
@@ -14,18 +15,20 @@ public class UIManager extends VBox {
 	private final BoardView boardView;
 	private PlayerChoiceView playerChoiceView;
 	private ResetRestartView resetRestartView;
+	private ScoreView scoreView;
 	
 	private UIManager() {
 		super();
-		setPrefSize(400, 460);
+		setPrefSize(400, 500);
 		
 		playerChoiceView = new PlayerChoiceView(UIPlayer.class, RandomAIPlayer.class);
 		boardView = new BoardView(400, 400);
 		resetRestartView = new ResetRestartView();
-		
+		scoreView = new ScoreView();
+
 //		bindBoundProperties();
 		
-		super.getChildren().addAll(playerChoiceView, boardView, resetRestartView);
+		super.getChildren().addAll(playerChoiceView, scoreView, boardView, resetRestartView);
 	}
 	
 	public static UIManager getInstance() {
@@ -49,6 +52,10 @@ public class UIManager extends VBox {
 	
 	public BoardView getBoardView() {
 		return boardView;
+	}
+	
+	public ScoreView getScoreView() {
+		return scoreView;
 	}
 	
 	@Override
