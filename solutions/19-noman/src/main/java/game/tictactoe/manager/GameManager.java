@@ -34,13 +34,13 @@ public class GameManager {
 		this.reset();
 	}
 	
-	private void restart() {
+	public void restart() {
 		this.board = new Board();
 		this.currentPlayer = this.lastRoundWinnerPlayer;
 		updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning();
 	}
 	
-	private void reset() {
+	public void reset() {
 		this.lastRoundWinnerPlayer = player1;
 		this.player1Score = 0;
 		this.player2Score = 0;
