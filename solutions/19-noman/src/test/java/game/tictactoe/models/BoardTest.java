@@ -1,5 +1,6 @@
-package game.tictactoe.model;
+package game.tictactoe.models;
 
+import game.tictactoe.models.states.CellState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

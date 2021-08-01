@@ -1,7 +1,7 @@
-package game.tictactoe.controller.player;
+package game.tictactoe.players.classic;
 
-import game.tictactoe.model.Board;
-import game.tictactoe.model.CellState;
+import game.tictactoe.models.Board;
+import game.tictactoe.models.states.CellState;
 
 public abstract class Player {
 	

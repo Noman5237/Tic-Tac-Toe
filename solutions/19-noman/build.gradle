@@ -16,7 +16,7 @@ javafx {
 }
 
 application {
-    mainClassName "game.tictactoe.MainApp"
+    mainClassName "game.tictactoe.Main"
 }
 
 dependencies {

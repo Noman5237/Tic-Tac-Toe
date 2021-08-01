@@ -1,4 +1,4 @@
-package game.tictactoe.model;
+package game.tictactoe.models.states;
 
 public enum CellState {
 	EMPTY,

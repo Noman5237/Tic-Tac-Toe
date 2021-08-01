@@ -1,4 +1,6 @@
-package game.tictactoe.model;
+package game.tictactoe.models;
+
+import game.tictactoe.models.states.CellState;
 
 public class Move {
 	

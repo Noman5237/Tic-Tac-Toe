@@ -1,6 +1,6 @@
-package game.tictactoe.view;
+package game.tictactoe.views;
 
-import game.tictactoe.manager.GameManager;
+import game.tictactoe.managers.GameManager;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 

@@ -1,11 +1,11 @@
-package game.tictactoe.manager;
+package game.tictactoe.managers;
 
-import game.tictactoe.controller.player.UIPlayer;
-import game.tictactoe.controller.player.ai.RandomAIPlayer;
-import game.tictactoe.view.BoardView;
-import game.tictactoe.view.PlayerChoiceView;
-import game.tictactoe.view.ResetRestartView;
-import game.tictactoe.view.ScoreView;
+import game.tictactoe.players.classic.UIPlayer;
+import game.tictactoe.players.classic.ai.RandomAIPlayer;
+import game.tictactoe.views.BoardView;
+import game.tictactoe.views.PlayerChoiceView;
+import game.tictactoe.views.ResetRestartView;
+import game.tictactoe.views.ScoreView;
 import javafx.scene.layout.VBox;
 
 public class UIManager extends VBox {

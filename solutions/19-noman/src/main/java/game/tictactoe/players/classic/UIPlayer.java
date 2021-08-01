@@ -1,11 +1,11 @@
-package game.tictactoe.controller.player;
+package game.tictactoe.players.classic;
 
-import game.tictactoe.manager.GameManager;
-import game.tictactoe.manager.UIManager;
-import game.tictactoe.model.Board;
-import game.tictactoe.model.CellState;
-import game.tictactoe.model.Move;
-import game.tictactoe.view.BoardView;
+import game.tictactoe.managers.GameManager;
+import game.tictactoe.managers.UIManager;
+import game.tictactoe.models.Board;
+import game.tictactoe.models.states.CellState;
+import game.tictactoe.models.Move;
+import game.tictactoe.views.BoardView;
 import javafx.geometry.Point2D;
 import javafx.scene.transform.NonInvertibleTransformException;
 

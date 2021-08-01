@@ -1,9 +1,10 @@
-package game.tictactoe.manager;
+package game.tictactoe.managers;
 
-import game.tictactoe.controller.player.Player;
-import game.tictactoe.model.Board;
-import game.tictactoe.model.CellState;
-import game.tictactoe.model.Move;
+import game.tictactoe.models.states.RoundState;
+import game.tictactoe.players.classic.Player;
+import game.tictactoe.models.Board;
+import game.tictactoe.models.states.CellState;
+import game.tictactoe.models.Move;
 
 public class GameManager {
 	

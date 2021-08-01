@@ -1,7 +1,7 @@
-package game.tictactoe.view;
+package game.tictactoe.views;
 
-import game.tictactoe.model.Board;
-import game.tictactoe.model.CellState;
+import game.tictactoe.models.Board;
+import game.tictactoe.models.states.CellState;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;

@@ -1,8 +1,8 @@
-package game.tictactoe.controller.player.ai;
+package game.tictactoe.players.classic.ai;
 
-import game.tictactoe.model.Board;
-import game.tictactoe.model.CellState;
-import game.tictactoe.model.Move;
+import game.tictactoe.models.Board;
+import game.tictactoe.models.states.CellState;
+import game.tictactoe.models.Move;
 
 import java.util.Date;
 import java.util.Random;

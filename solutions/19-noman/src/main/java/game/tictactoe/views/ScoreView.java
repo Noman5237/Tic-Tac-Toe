@@ -1,4 +1,4 @@
-package game.tictactoe.view;
+package game.tictactoe.views;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

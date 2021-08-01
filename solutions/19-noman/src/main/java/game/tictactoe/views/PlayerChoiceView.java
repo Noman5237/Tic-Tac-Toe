@@ -1,8 +1,8 @@
-package game.tictactoe.view;
+package game.tictactoe.views;
 
-import game.tictactoe.controller.player.Player;
-import game.tictactoe.manager.GameManager;
-import game.tictactoe.model.CellState;
+import game.tictactoe.players.classic.Player;
+import game.tictactoe.managers.GameManager;
+import game.tictactoe.models.states.CellState;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 
