@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ApplicationConfiguration {
 	
 	private double windowWidth = 600;
-	private double windowHeight = 600;
+	private double windowHeight = 800;
 	
 	ArrayList<ChangeListener<Boolean>> listeners;
 	

@@ -74,7 +74,8 @@ public class BoardView implements ResizableView {
 	
 	@Override
 	public void resize(double width, double height) {
-		canvas.resize(width, height);
+		canvas.setWidth(width);
+		canvas.setHeight(height);
 		
 		// transformation scale
 		this.affine = new Affine(new Scale(width / ((double) Board.SIZE), height / ((double) Board.SIZE)));

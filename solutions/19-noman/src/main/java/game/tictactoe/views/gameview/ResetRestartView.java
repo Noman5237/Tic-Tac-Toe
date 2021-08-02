@@ -11,6 +11,7 @@ public class ResetRestartView implements ResizableView {
 	private final HBox root;
 	private final Button resetButton;
 	private final Button restartButton;
+	private final double HORIZONTAL_WEIGHT = 2;
 	
 	public ResetRestartView() {
 		this.root = new HBox();
@@ -26,7 +27,9 @@ public class ResetRestartView implements ResizableView {
 	
 	@Override
 	public void resize(double width, double height) {
-	
+		double unitWidth = width / HORIZONTAL_WEIGHT;
+		this.resetButton.setPrefSize(unitWidth, height);
+		this.restartButton.setPrefSize(unitWidth, height);
 	}
 	
 	@Override

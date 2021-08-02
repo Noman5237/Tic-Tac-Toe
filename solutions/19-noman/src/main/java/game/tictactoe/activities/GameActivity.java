@@ -19,6 +19,7 @@ public class GameActivity implements Activity {
 	public GameActivity() {
 		this.applicationConfiguration = ApplicationManager.getInstance().getApplicationConfiguration();
 		this.initializeView();
+		this.setupListeners();
 		this.setupOnAction();
 		
 		this.gameView.getBoardView().draw(new Board());
@@ -29,6 +30,12 @@ public class GameActivity implements Activity {
 		double windowHeight = this.applicationConfiguration.getWindowHeight();
 		this.gameView = new GameView(windowWidth, windowHeight);
 		this.gameView.resize(windowWidth, windowHeight);
+	}
+	
+	private void setupListeners() {
+		applicationConfiguration.addListener((observable, oldValue, newValue) -> {
+			this.gameView.resize(applicationConfiguration.getWindowWidth(), applicationConfiguration.getWindowHeight());
+		});
 	}
 	
 	private void setupOnAction() {

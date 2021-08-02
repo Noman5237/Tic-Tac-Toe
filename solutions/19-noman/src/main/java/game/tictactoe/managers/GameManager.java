@@ -20,13 +20,20 @@ public class GameManager {
 	private Player lastRoundWinnerPlayer;
 	private CellState cellState;
 	private GameActivity gameActivity;
+	private final ApplicationManager applicationManager;
 	
 	private GameManager() {
 		player1Score = 0;
 		player2Score = 0;
 		
-		this.gameActivity = (GameActivity) ApplicationManager.getInstance().getCurrentActivity();
-		gameActivity.getView().getBoardView().draw(new Board());
+		applicationManager = ApplicationManager.getInstance();
+		this.setupListeners();
+	}
+	
+	private void setupListeners() {
+		applicationManager.getApplicationConfiguration().addListener((observable, oldValue, newValue) -> {
+			gameActivity.getView().getBoardView().draw(this.getCurrentBoard());
+		});
 	}
 	
 	public static GameManager getInstance() {
@@ -37,8 +44,13 @@ public class GameManager {
 	}
 	
 	public void start() {
-		gameActivity.getView().getPlayerChoiceView().getPlayer1Choices().getSelectionModel().select(0);
-		gameActivity.getView().getPlayerChoiceView().getPlayer2Choices().getSelectionModel().select(0);
+		this.gameActivity = (GameActivity) applicationManager.getCurrentActivity();
+		
+		gameActivity.getView().getPlayerChoiceView().getPlayer1Choices().getSelectionModel().selectFirst();
+		gameActivity.getView().getPlayerChoiceView().getPlayer2Choices().getSelectionModel().selectFirst();
+		gameActivity.getView().getPlayerChoiceView().getPlayer1Choices().getOnAction().handle(null);
+		gameActivity.getView().getPlayerChoiceView().getPlayer2Choices().getOnAction().handle(null);
+		
 		this.reset();
 	}
 	

@@ -13,6 +13,8 @@ public class PlayerChoiceView implements ResizableView {
 	private final ComboBox<Class<? extends Player>> player1Choices;
 	private final ComboBox<Class<? extends Player>> player2Choices;
 	
+	private final int HORIZONTAL_WEIGHT = 2;
+	
 	@SafeVarargs
 	public PlayerChoiceView(Class<? extends Player>... playerTypes) {
 		this.root = new HBox();
@@ -27,7 +29,9 @@ public class PlayerChoiceView implements ResizableView {
 	
 	@Override
 	public void resize(double width, double height) {
-	
+		double unitWidth = width / HORIZONTAL_WEIGHT;
+		this.player1Choices.setPrefSize(unitWidth, height);
+		this.player2Choices.setPrefSize(unitWidth, height);
 	}
 	
 	@Override

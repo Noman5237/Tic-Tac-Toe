@@ -12,6 +12,7 @@ public class ScoreView implements ResizableView {
 	private final HBox root;
 	private final Label player1Score;
 	private final Label player2Score;
+	private final double HORIZONTAL_WEIGHT = 2;
 	
 	public ScoreView() {
 		this.root = new HBox();
@@ -31,7 +32,9 @@ public class ScoreView implements ResizableView {
 	
 	@Override
 	public void resize(double width, double height) {
-	
+		double unitWidth = width / HORIZONTAL_WEIGHT;
+		this.player1Score.setPrefSize(unitWidth, height);
+		this.player2Score.setPrefSize(unitWidth, height);
 	}
 	
 	@Override
