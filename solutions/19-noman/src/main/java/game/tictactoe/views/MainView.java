@@ -2,12 +2,14 @@ package game.tictactoe.views;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class MainView extends VBox {
+public class MainView implements View {
 	
+	private final VBox root;
 	private final Button playButton;
 	private final Button optionsButton;
 	private final Button aboutButton;
@@ -15,24 +17,25 @@ public class MainView extends VBox {
 	private final int HORIZONTAL_WEIGHT = 2;
 	private final int VERTICAL_WEIGHT = 6;
 	private final Insets BUTTON_MARGINS =
-			new Insets(VERTICAL_WEIGHT * 1.5,
-					HORIZONTAL_WEIGHT,
-					VERTICAL_WEIGHT * 1.5,
-					HORIZONTAL_WEIGHT);
+			new Insets(this.VERTICAL_WEIGHT * 1.5,
+					this.HORIZONTAL_WEIGHT,
+					this.VERTICAL_WEIGHT * 1.5,
+					this.HORIZONTAL_WEIGHT);
 	
-	public MainView(int width, int height) {
+	public MainView(double width, double height) {
 		this.playButton = new Button("play game".toUpperCase());
 		this.optionsButton = new Button("options".toUpperCase());
 		this.aboutButton = new Button("about".toUpperCase());
+		this.root = new VBox();
 		
 		this.setupContainer();
-		super.setPrefSize(width, height);
+		this.root.setPrefSize(width, height);
 		this.setupButtonMargins();
 	}
 	
 	private void setupContainer() {
-		super.getChildren().addAll(this.playButton, this.optionsButton, this.aboutButton);
-		super.setAlignment(Pos.CENTER);
+		this.root.getChildren().addAll(this.playButton, this.optionsButton, this.aboutButton);
+		this.root.setAlignment(Pos.CENTER);
 	}
 	
 	private void setupButtonMargins() {
@@ -43,17 +46,34 @@ public class MainView extends VBox {
 	
 	@Override
 	public void resize(double width, double height) {
-		super.resize(width, height);
+		this.root.resize(width, height);
 		this.resizeButtons(width, height);
 	}
 	
 	private void resizeButtons(double width, double height) {
-		this.playButton.setPrefSize(width / HORIZONTAL_WEIGHT, height / VERTICAL_WEIGHT);
-		this.optionsButton.setPrefSize(width / HORIZONTAL_WEIGHT, height / VERTICAL_WEIGHT);
-		this.aboutButton.setPrefSize(width / HORIZONTAL_WEIGHT, height / VERTICAL_WEIGHT);
+		this.playButton.setPrefSize(width / this.HORIZONTAL_WEIGHT, height / this.VERTICAL_WEIGHT);
+		this.optionsButton.setPrefSize(width / this.HORIZONTAL_WEIGHT, height / this.VERTICAL_WEIGHT);
+		this.aboutButton.setPrefSize(width / this.HORIZONTAL_WEIGHT, height / this.VERTICAL_WEIGHT);
 		
-		this.playButton.setFont(Font.font(height / (VERTICAL_WEIGHT * VERTICAL_WEIGHT)));
-		this.optionsButton.setFont(Font.font(height / (VERTICAL_WEIGHT * VERTICAL_WEIGHT)));
-		this.aboutButton.setFont(Font.font(height / (VERTICAL_WEIGHT * VERTICAL_WEIGHT)));
+		this.playButton.setFont(Font.font(height / (this.VERTICAL_WEIGHT * this.VERTICAL_WEIGHT)));
+		this.optionsButton.setFont(Font.font(height / (this.VERTICAL_WEIGHT * this.VERTICAL_WEIGHT)));
+		this.aboutButton.setFont(Font.font(height / (this.VERTICAL_WEIGHT * this.VERTICAL_WEIGHT)));
+	}
+	
+	@Override
+	public Parent getRoot() {
+		return this.root;
+	}
+	
+	public Button getPlayButton() {
+		return this.playButton;
+	}
+	
+	public Button getOptionsButton() {
+		return this.optionsButton;
+	}
+	
+	public Button getAboutButton() {
+		return this.aboutButton;
 	}
 }
