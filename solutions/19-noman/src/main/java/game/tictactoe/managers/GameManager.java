@@ -77,7 +77,7 @@ public class GameManager {
 			if (roundStatus == RoundState.X_WINS) {
 				++this.player1Score;
 				this.gameActivity.updatePlayer1Score(this.player1Score);
-			} else {
+			} else if (roundStatus == RoundState.O_WINS) {
 				++this.player2Score;
 				this.gameActivity.updatePlayer2Score(this.player2Score);
 			}
@@ -92,8 +92,10 @@ public class GameManager {
 				if (this.cellState != CellState.EMPTY) {
 					if (this.cellState == CellState.X) {
 						return RoundState.X_WINS;
-					} else {
+					} else if (this.cellState == CellState.O) {
 						return RoundState.O_WINS;
+					} else {
+						return RoundState.DRAW;
 					}
 				}
 			}
