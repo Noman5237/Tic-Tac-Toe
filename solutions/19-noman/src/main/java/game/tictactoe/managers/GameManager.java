@@ -37,11 +37,9 @@ public class GameManager {
 	}
 	
 	public void start() {
-		if (player1 != null && player2 != null) {
-			this.reset();
-		} else {
-			gameActivity.getView().getBoardView().draw(new Board());
-		}
+		gameActivity.getView().getPlayerChoiceView().getPlayer1Choices().getSelectionModel().select(0);
+		gameActivity.getView().getPlayerChoiceView().getPlayer2Choices().getSelectionModel().select(0);
+		this.reset();
 	}
 	
 	public void restart() {

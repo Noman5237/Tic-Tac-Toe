@@ -1,10 +1,10 @@
 package game.tictactoe.activities;
 
 import game.tictactoe.managers.ApplicationManager;
+import game.tictactoe.managers.GameManager;
 import game.tictactoe.models.states.ApplicationConfiguration;
 import game.tictactoe.views.MainView;
 import javafx.beans.value.ChangeListener;
-import javafx.scene.Parent;
 
 public class MainActivity implements Activity {
 	
@@ -34,7 +34,10 @@ public class MainActivity implements Activity {
 	}
 	
 	private void setupActions() {
-		this.mainView.getPlayButton().setOnAction(event -> this.applicationManager.startActivity(GameActivity.class));
+		this.mainView.getPlayButton().setOnAction(event -> {
+			this.applicationManager.startActivity(GameActivity.class);
+			GameManager.getInstance().start();
+		});
 	}
 	
 	@Override
