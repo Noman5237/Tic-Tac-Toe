@@ -2,12 +2,12 @@ package game.tictactoe.views;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class MainView implements View {
+public class MainView implements ResizableView {
 	
 	private final VBox root;
 	private final Button playButton;
@@ -61,7 +61,7 @@ public class MainView implements View {
 	}
 	
 	@Override
-	public Parent getRoot() {
+	public Node getRoot() {
 		return this.root;
 	}
 	

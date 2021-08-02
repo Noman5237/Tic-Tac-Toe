@@ -9,4 +9,5 @@ module game.tictactoe {
 	exports game.tictactoe;
 	exports game.tictactoe.views;
 	exports game.tictactoe.models.states;
+	exports game.tictactoe.views.gameview;
 }

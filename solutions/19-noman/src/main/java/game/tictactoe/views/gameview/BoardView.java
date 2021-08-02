@@ -1,15 +1,18 @@
-package game.tictactoe.views;
+package game.tictactoe.views.gameview;
 
 import game.tictactoe.models.Board;
 import game.tictactoe.models.states.CellState;
+import game.tictactoe.views.ResizableView;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.Scale;
 
-public class BoardView extends Canvas {
+public class BoardView implements ResizableView {
 	
+	private final Canvas canvas;
 	private final GraphicsContext ctx;
 	
 	private static final double RADIUS = 0.25;
@@ -19,10 +22,10 @@ public class BoardView extends Canvas {
 	private Affine affine;
 	
 	public BoardView(double width, double height) {
-		super(width, height);
+		this.canvas = new Canvas(width, height);
 		
 		// graphics context
-		this.ctx = super.getGraphicsContext2D();
+		this.ctx = canvas.getGraphicsContext2D();
 		
 		this.ctx.setLineWidth(LINE_WIDTH);
 		
@@ -71,20 +74,24 @@ public class BoardView extends Canvas {
 	
 	@Override
 	public void resize(double width, double height) {
-		super.resize(width, height);
+		canvas.resize(width, height);
 		
 		// transformation scale
 		this.affine = new Affine(new Scale(width / ((double) Board.SIZE), height / ((double) Board.SIZE)));
 		this.ctx.setTransform(this.affine);
 	}
 	
-	public Affine getAffine() {
-		return this.affine;
+	@Override
+	public Node getRoot() {
+		return this.canvas;
 	}
 	
-	@Override
-	public boolean isResizable() {
-		return true;
+	public Canvas getCanvas() {
+		return canvas;
+	}
+	
+	public Affine getAffine() {
+		return this.affine;
 	}
 	
 }

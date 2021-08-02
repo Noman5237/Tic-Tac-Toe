@@ -10,15 +10,18 @@ public class MainActivity implements Activity {
 	
 	private MainView mainView;
 	private final ApplicationConfiguration applicationConfiguration;
+	ApplicationManager applicationManager;
 	private ChangeListener<Boolean> applicationConfigurationChangeListener;
 	
 	public MainActivity() {
-		this.applicationConfiguration = ApplicationManager.getInstance().getApplicationConfiguration();
-		this.initializeMainView();
+		this.applicationManager = ApplicationManager.getInstance();
+		this.applicationConfiguration = this.applicationManager.getApplicationConfiguration();
+		this.initializeView();
 		this.setupListeners();
+		this.setupActions();
 	}
 	
-	private void initializeMainView() {
+	private void initializeView() {
 		double windowWidth = this.applicationConfiguration.getWindowWidth();
 		double windowHeight = this.applicationConfiguration.getWindowHeight();
 		this.mainView = new MainView(windowWidth, windowHeight);
@@ -30,9 +33,13 @@ public class MainActivity implements Activity {
 		this.applicationConfiguration.addListener(this.applicationConfigurationChangeListener);
 	}
 	
+	private void setupActions() {
+		this.mainView.getPlayButton().setOnAction(event -> this.applicationManager.startActivity(GameActivity.class));
+	}
+	
 	@Override
-	public Parent getView() {
-		return this.mainView.getRoot();
+	public MainView getView() {
+		return this.mainView;
 	}
 	
 	@Override

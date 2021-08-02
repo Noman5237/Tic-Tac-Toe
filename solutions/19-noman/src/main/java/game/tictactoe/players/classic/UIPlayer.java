@@ -1,11 +1,12 @@
 package game.tictactoe.players.classic;
 
+import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.managers.GameManager;
-import game.tictactoe.managers.UIManager;
 import game.tictactoe.models.Board;
-import game.tictactoe.models.states.CellState;
 import game.tictactoe.models.Move;
-import game.tictactoe.views.BoardView;
+import game.tictactoe.models.states.CellState;
+import game.tictactoe.views.gameview.BoardView;
+import game.tictactoe.views.gameview.GameView;
 import javafx.geometry.Point2D;
 import javafx.scene.transform.NonInvertibleTransformException;
 
@@ -18,8 +19,8 @@ public class UIPlayer extends Player {
 	
 	@Override
 	public void promptForNextMove(Board board) {
-		BoardView boardView = UIManager.getInstance().getBoardView();
-		boardView.setOnMouseClicked(mouseEvent -> {
+		BoardView boardView = ((GameView) ApplicationManager.getInstance().getCurrentActivity().getView()).getBoardView();
+		boardView.getCanvas().setOnMouseClicked(mouseEvent -> {
 			try {
 				Point2D point2D = boardView.getAffine().inverseTransform(mouseEvent.getX(), mouseEvent.getY());
 				Move nextMove = new Move(((int) point2D.getX()), ((int) point2D.getY()), super.getPlayerSymbol());

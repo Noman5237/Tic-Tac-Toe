@@ -1,11 +1,9 @@
 package game.tictactoe.activities;
-
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import game.tictactoe.views.ResizableView;
 
 public interface Activity {
 	
-	Parent getView();
+	ResizableView getView();
 	
 	void destroy();
 }

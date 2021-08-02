@@ -31,7 +31,7 @@ public class ApplicationManager {
 	public void startActivity(Class<? extends Activity> activityClass) {
 		try {
 			Activity newActivity = this.activities.push(activityClass.getConstructor().newInstance());
-			this.setView(newActivity.getView());
+			this.setView((Parent) newActivity.getView().getRoot());
 		} catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
@@ -42,12 +42,16 @@ public class ApplicationManager {
 			Activity endedActivity = this.activities.pop();
 			endedActivity.destroy();
 		}
-		this.setView(this.activities.peek().getView());
+		this.setView((Parent) this.activities.peek().getView().getRoot());
 	}
 	
 	public void setView(Parent root) {
 		this.applicationConfiguration.bindWidthNHeight((Region) root);
 		Main.setSceneRoot(root);
+	}
+	
+	public Activity getCurrentActivity() {
+		return this.activities.peek();
 	}
 	
 	public ApplicationConfiguration getApplicationConfiguration() {
