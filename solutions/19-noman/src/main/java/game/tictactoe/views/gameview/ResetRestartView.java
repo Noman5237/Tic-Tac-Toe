@@ -1,6 +1,5 @@
 package game.tictactoe.views.gameview;
 
-import game.tictactoe.managers.GameManager;
 import game.tictactoe.views.ResizableView;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -27,7 +26,7 @@ public class ResetRestartView implements ResizableView {
 	
 	@Override
 	public void resize(double width, double height) {
-		double unitWidth = width / HORIZONTAL_WEIGHT;
+		double unitWidth = width / this.HORIZONTAL_WEIGHT;
 		this.resetButton.setPrefSize(unitWidth, height);
 		this.restartButton.setPrefSize(unitWidth, height);
 	}
@@ -38,10 +37,10 @@ public class ResetRestartView implements ResizableView {
 	}
 	
 	public Button getResetButton() {
-		return resetButton;
+		return this.resetButton;
 	}
 	
 	public Button getRestartButton() {
-		return restartButton;
+		return this.restartButton;
 	}
 }

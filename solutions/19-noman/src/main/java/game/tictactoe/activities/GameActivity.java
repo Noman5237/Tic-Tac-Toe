@@ -33,9 +33,7 @@ public class GameActivity implements Activity {
 	}
 	
 	private void setupListeners() {
-		applicationConfiguration.addListener((observable, oldValue, newValue) -> {
-			this.gameView.resize(applicationConfiguration.getWindowWidth(), applicationConfiguration.getWindowHeight());
-		});
+		this.applicationConfiguration.addListener((observable, oldValue, newValue) -> this.gameView.resize(this.applicationConfiguration.getWindowWidth(), this.applicationConfiguration.getWindowHeight()));
 	}
 	
 	private void setupOnAction() {
@@ -47,13 +45,13 @@ public class GameActivity implements Activity {
 		ComboBox<Class<? extends Player>> player1Choices = this.gameView.getPlayerChoiceView().getPlayer1Choices();
 		player1Choices.setOnAction(event -> {
 			Class<? extends Player> playerClass = player1Choices.getSelectionModel().getSelectedItem();
-			GameManager.getInstance().setPlayer1(createPlayerInstance(playerClass, CellState.X));
+			GameManager.getInstance().setPlayer1(this.createPlayerInstance(playerClass, CellState.X));
 		});
 		
 		ComboBox<Class<? extends Player>> player2Choices = this.gameView.getPlayerChoiceView().getPlayer2Choices();
 		player2Choices.setOnAction(event -> {
 			Class<? extends Player> playerClass = player2Choices.getSelectionModel().getSelectedItem();
-			GameManager.getInstance().setPlayer2(createPlayerInstance(playerClass, CellState.O));
+			GameManager.getInstance().setPlayer2(this.createPlayerInstance(playerClass, CellState.O));
 		});
 	}
 	
@@ -81,7 +79,7 @@ public class GameActivity implements Activity {
 	
 	@Override
 	public GameView getView() {
-		return gameView;
+		return this.gameView;
 	}
 	
 	@Override

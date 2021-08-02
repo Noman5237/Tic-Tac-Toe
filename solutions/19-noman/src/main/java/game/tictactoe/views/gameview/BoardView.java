@@ -25,7 +25,7 @@ public class BoardView implements ResizableView {
 		this.canvas = new Canvas(width, height);
 		
 		// graphics context
-		this.ctx = canvas.getGraphicsContext2D();
+		this.ctx = this.canvas.getGraphicsContext2D();
 		
 		this.ctx.setLineWidth(LINE_WIDTH);
 		
@@ -52,8 +52,8 @@ public class BoardView implements ResizableView {
 	}
 	
 	private void drawX(double x, double y) {
-		ctx.strokeLine(x, y, x + BoardView.RADIUS * 2, y + BoardView.RADIUS * 2);
-		ctx.strokeLine(x + BoardView.RADIUS * 2, y, x, y + BoardView.RADIUS * 2);
+		this.ctx.strokeLine(x, y, x + BoardView.RADIUS * 2, y + BoardView.RADIUS * 2);
+		this.ctx.strokeLine(x + BoardView.RADIUS * 2, y, x, y + BoardView.RADIUS * 2);
 	}
 	
 	private void drawO(double x, double y) {
@@ -74,8 +74,8 @@ public class BoardView implements ResizableView {
 	
 	@Override
 	public void resize(double width, double height) {
-		canvas.setWidth(width);
-		canvas.setHeight(height);
+		this.canvas.setWidth(width);
+		this.canvas.setHeight(height);
 		
 		// transformation scale
 		this.affine = new Affine(new Scale(width / ((double) Board.SIZE), height / ((double) Board.SIZE)));
@@ -88,7 +88,7 @@ public class BoardView implements ResizableView {
 	}
 	
 	public Canvas getCanvas() {
-		return canvas;
+		return this.canvas;
 	}
 	
 	public Affine getAffine() {

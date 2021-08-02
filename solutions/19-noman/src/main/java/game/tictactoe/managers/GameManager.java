@@ -23,17 +23,15 @@ public class GameManager {
 	private final ApplicationManager applicationManager;
 	
 	private GameManager() {
-		player1Score = 0;
-		player2Score = 0;
+		this.player1Score = 0;
+		this.player2Score = 0;
 		
-		applicationManager = ApplicationManager.getInstance();
+		this.applicationManager = ApplicationManager.getInstance();
 		this.setupListeners();
 	}
 	
 	private void setupListeners() {
-		applicationManager.getApplicationConfiguration().addListener((observable, oldValue, newValue) -> {
-			gameActivity.getView().getBoardView().draw(this.getCurrentBoard());
-		});
+		this.applicationManager.getApplicationConfiguration().addListener((observable, oldValue, newValue) -> this.gameActivity.getView().getBoardView().draw(this.getCurrentBoard()));
 	}
 	
 	public static GameManager getInstance() {
@@ -44,12 +42,12 @@ public class GameManager {
 	}
 	
 	public void start() {
-		this.gameActivity = (GameActivity) applicationManager.getCurrentActivity();
+		this.gameActivity = (GameActivity) this.applicationManager.getCurrentActivity();
 		
-		gameActivity.getView().getPlayerChoiceView().getPlayer1Choices().getSelectionModel().selectFirst();
-		gameActivity.getView().getPlayerChoiceView().getPlayer2Choices().getSelectionModel().selectFirst();
-		gameActivity.getView().getPlayerChoiceView().getPlayer1Choices().getOnAction().handle(null);
-		gameActivity.getView().getPlayerChoiceView().getPlayer2Choices().getOnAction().handle(null);
+		this.gameActivity.getView().getPlayerChoiceView().getPlayer1Choices().getSelectionModel().selectFirst();
+		this.gameActivity.getView().getPlayerChoiceView().getPlayer2Choices().getSelectionModel().selectFirst();
+		this.gameActivity.getView().getPlayerChoiceView().getPlayer1Choices().getOnAction().handle(null);
+		this.gameActivity.getView().getPlayerChoiceView().getPlayer2Choices().getOnAction().handle(null);
 		
 		this.reset();
 	}
@@ -57,31 +55,31 @@ public class GameManager {
 	public void restart() {
 		this.board = new Board();
 		this.currentPlayer = this.lastRoundWinnerPlayer;
-		updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning();
+		this.updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning();
 	}
 	
 	public void reset() {
-		this.lastRoundWinnerPlayer = player1;
+		this.lastRoundWinnerPlayer = this.player1;
 		this.player1Score = 0;
 		this.player2Score = 0;
-		gameActivity.updatePlayer1Score(player1Score);
-		gameActivity.updatePlayer2Score(player2Score);
-		restart();
+		this.gameActivity.updatePlayer1Score(this.player1Score);
+		this.gameActivity.updatePlayer2Score(this.player2Score);
+		this.restart();
 	}
 	
 	private void updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning() {
 		Board currentBoard = this.getCurrentBoard();
-		gameActivity.getView().getBoardView().draw(currentBoard);
+		this.gameActivity.getView().getBoardView().draw(currentBoard);
 		RoundState roundStatus = this.getRoundStatus();
 		if (roundStatus == RoundState.RUNNING) {
 			this.currentPlayer.promptForNextMove(currentBoard);
 		} else {
 			if (roundStatus == RoundState.X_WINS) {
-				++player1Score;
-				gameActivity.updatePlayer1Score(player1Score);
+				++this.player1Score;
+				this.gameActivity.updatePlayer1Score(this.player1Score);
 			} else {
-				++player2Score;
-				gameActivity.updatePlayer2Score(player2Score);
+				++this.player2Score;
+				this.gameActivity.updatePlayer2Score(this.player2Score);
 			}
 		}
 	}
@@ -89,10 +87,10 @@ public class GameManager {
 	private RoundState getRoundStatus() {
 		// vertical
 		for (int x = 0; x < Board.SIZE; x++) {
-			cellState = this.board.getCellState(x, 0);
-			if (cellState.equals(this.board.getCellState(x, 1), this.board.getCellState(x, 2))) {
-				if (cellState != CellState.EMPTY) {
-					if (cellState == CellState.X) {
+			this.cellState = this.board.getCellState(x, 0);
+			if (this.cellState.equals(this.board.getCellState(x, 1), this.board.getCellState(x, 2))) {
+				if (this.cellState != CellState.EMPTY) {
+					if (this.cellState == CellState.X) {
 						return RoundState.X_WINS;
 					} else {
 						return RoundState.O_WINS;
@@ -103,10 +101,10 @@ public class GameManager {
 		
 		// horizontal
 		for (int y = 0; y < Board.SIZE; y++) {
-			cellState = this.board.getCellState(0, y);
-			if (cellState.equals(this.board.getCellState(1, y), this.board.getCellState(2, y))) {
-				if (cellState != CellState.EMPTY) {
-					if (cellState == CellState.X) {
+			this.cellState = this.board.getCellState(0, y);
+			if (this.cellState.equals(this.board.getCellState(1, y), this.board.getCellState(2, y))) {
+				if (this.cellState != CellState.EMPTY) {
+					if (this.cellState == CellState.X) {
 						return RoundState.X_WINS;
 					} else {
 						return RoundState.O_WINS;
@@ -116,10 +114,10 @@ public class GameManager {
 		}
 		
 		// diagonal
-		cellState = this.board.getCellState(0, 0);
-		if (cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(2, 2))) {
-			if (cellState != CellState.EMPTY) {
-				if (cellState == CellState.X) {
+		this.cellState = this.board.getCellState(0, 0);
+		if (this.cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(2, 2))) {
+			if (this.cellState != CellState.EMPTY) {
+				if (this.cellState == CellState.X) {
 					return RoundState.X_WINS;
 				} else {
 					return RoundState.O_WINS;
@@ -127,10 +125,10 @@ public class GameManager {
 			}
 		}
 		
-		cellState = this.board.getCellState(2, 0);
-		if (cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(0, 2))) {
-			if (cellState != CellState.EMPTY) {
-				if (cellState == CellState.X) {
+		this.cellState = this.board.getCellState(2, 0);
+		if (this.cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(0, 2))) {
+			if (this.cellState != CellState.EMPTY) {
+				if (this.cellState == CellState.X) {
 					return RoundState.X_WINS;
 				} else {
 					return RoundState.O_WINS;
@@ -138,7 +136,7 @@ public class GameManager {
 			}
 		}
 		
-		int emptyCellCount = countEmptyCells(this.board);
+		int emptyCellCount = this.countEmptyCells(this.board);
 		if (emptyCellCount > 0) {
 			return RoundState.RUNNING;
 		}
@@ -172,7 +170,7 @@ public class GameManager {
 				this.currentPlayer = this.player1;
 			}
 			
-			updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning();
+			this.updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning();
 		}
 	}
 	

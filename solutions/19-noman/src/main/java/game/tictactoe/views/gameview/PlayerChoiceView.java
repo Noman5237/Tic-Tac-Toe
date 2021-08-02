@@ -24,26 +24,26 @@ public class PlayerChoiceView implements ResizableView {
 		this.player1Choices.getItems().addAll(playerTypes);
 		this.player2Choices.getItems().addAll(playerTypes);
 		
-		this.root.getChildren().addAll(player1Choices, player2Choices);
+		this.root.getChildren().addAll(this.player1Choices, this.player2Choices);
 	}
 	
 	@Override
 	public void resize(double width, double height) {
-		double unitWidth = width / HORIZONTAL_WEIGHT;
+		double unitWidth = width / this.HORIZONTAL_WEIGHT;
 		this.player1Choices.setPrefSize(unitWidth, height);
 		this.player2Choices.setPrefSize(unitWidth, height);
 	}
 	
 	@Override
 	public Node getRoot() {
-		return root;
+		return this.root;
 	}
 	
 	public ComboBox<Class<? extends Player>> getPlayer1Choices() {
-		return player1Choices;
+		return this.player1Choices;
 	}
 	
 	public ComboBox<Class<? extends Player>> getPlayer2Choices() {
-		return player2Choices;
+		return this.player2Choices;
 	}
 }

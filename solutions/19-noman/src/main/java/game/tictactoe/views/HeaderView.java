@@ -20,7 +20,7 @@ public class HeaderView implements ResizableView {
 		this.goBackButton = new Button("<");
 		this.title = new Label(titleText);
 		
-		this.root.getChildren().addAll(goBackButton, title);
+		this.root.getChildren().addAll(this.goBackButton, this.title);
 		this.setupGoBackListener();
 	}
 	
@@ -30,7 +30,7 @@ public class HeaderView implements ResizableView {
 	
 	@Override
 	public void resize(double width, double height) {
-		double unitWidth = width / HORIZONTAL_WEIGHT;
+		double unitWidth = width / this.HORIZONTAL_WEIGHT;
 		this.goBackButton.setPrefSize(unitWidth, height);
 		this.title.setPrefSize(unitWidth * 9, height);
 	}

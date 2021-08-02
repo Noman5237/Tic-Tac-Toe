@@ -20,18 +20,18 @@ public class GameView implements ResizableView {
 	
 	public GameView(double width, double height) {
 		this.root = new VBox();
-		headerView = new HeaderView("Tic-Tac-Toe-Classic");
+		this.headerView = new HeaderView("Tic-Tac-Toe-Classic");
 		this.playerChoiceView = new PlayerChoiceView(UIPlayer.class, RandomAIPlayer.class);
 		this.scoreView = new ScoreView();
 		this.boardView = new BoardView(width, height);
 		this.resetRestartView = new ResetRestartView();
 		
-		root.getChildren().addAll(
-				headerView.getRoot(),
-				playerChoiceView.getRoot(),
-				scoreView.getRoot(),
-				boardView.getRoot(),
-				resetRestartView.getRoot()
+		this.root.getChildren().addAll(
+				this.headerView.getRoot(),
+				this.playerChoiceView.getRoot(),
+				this.scoreView.getRoot(),
+				this.boardView.getRoot(),
+				this.resetRestartView.getRoot()
 		);
 		
 		this.root.setPrefSize(width, height);
@@ -40,12 +40,18 @@ public class GameView implements ResizableView {
 	@Override
 	public void resize(double width, double height) {
 		this.root.resize(width, height);
-		double unitHeight = height / VERTICAL_WEIGHT;
-		headerView.resize(width, unitHeight);
-		playerChoiceView.resize(width, unitHeight);
-		scoreView.resize(width, unitHeight);
-		boardView.resize(width, unitHeight * 6);
-		resetRestartView.resize(width, unitHeight);
+		double unitHeight = height / this.VERTICAL_WEIGHT;
+		this.headerView.resize(width, unitHeight);
+		this.playerChoiceView.resize(width, unitHeight);
+		this.scoreView.resize(width, unitHeight);
+		this.boardView.resize(width, unitHeight * 6);
+		this.resetRestartView.resize(width, unitHeight);
+		
+		this.resizeFonts();
+	}
+	
+	private void resizeFonts() {
+	
 	}
 	
 	@Override
@@ -54,18 +60,18 @@ public class GameView implements ResizableView {
 	}
 	
 	public PlayerChoiceView getPlayerChoiceView() {
-		return playerChoiceView;
+		return this.playerChoiceView;
 	}
 	
 	public ScoreView getScoreView() {
-		return scoreView;
+		return this.scoreView;
 	}
 	
 	public BoardView getBoardView() {
-		return boardView;
+		return this.boardView;
 	}
 	
 	public ResetRestartView getResetRestartView() {
-		return resetRestartView;
+		return this.resetRestartView;
 	}
 }
