@@ -4,9 +4,9 @@ import game.tictactoe.models.Board;
 import game.tictactoe.models.states.CellState;
 import game.tictactoe.models.Move;
 
-public class DefensiveAIPlayer extends AIPlayer {
+public class IntelligentAIPlayer extends AIPlayer {
 	
-	public DefensiveAIPlayer(CellState playerSymbol) {
+	public IntelligentAIPlayer(CellState playerSymbol) {
 		super(playerSymbol);
 	}
 	

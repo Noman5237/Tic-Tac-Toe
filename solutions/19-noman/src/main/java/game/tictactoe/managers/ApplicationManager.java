@@ -39,7 +39,7 @@ public class ApplicationManager {
 	
 	public void destroyCurrentActivity() {
 		Activity endedActivity = this.activities.pop();
-		endedActivity.destroy();
+		endedActivity.onDestroy();
 		this.setView((Parent) this.activities.peek().getView().getRoot());
 	}
 	

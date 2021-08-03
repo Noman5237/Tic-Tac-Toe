@@ -83,7 +83,7 @@ public class GameActivity implements Activity {
 	}
 	
 	@Override
-	public void destroy() {
+	public void onDestroy() {
 	
 	}
 }

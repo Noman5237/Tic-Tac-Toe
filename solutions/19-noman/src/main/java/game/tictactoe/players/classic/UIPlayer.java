@@ -12,7 +12,6 @@ import javafx.scene.transform.NonInvertibleTransformException;
 
 public class UIPlayer extends Player {
 	
-	
 	public UIPlayer(CellState playerSymbol) {
 		super(playerSymbol);
 	}

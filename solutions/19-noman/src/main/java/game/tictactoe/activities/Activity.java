@@ -5,5 +5,5 @@ public interface Activity {
 	
 	ResizableView getView();
 	
-	void destroy();
+	void onDestroy();
 }

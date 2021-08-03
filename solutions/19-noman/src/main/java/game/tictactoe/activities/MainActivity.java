@@ -46,7 +46,7 @@ public class MainActivity implements Activity {
 	}
 	
 	@Override
-	public void destroy() {
+	public void onDestroy() {
 		this.applicationConfiguration.removeListener(this.applicationConfigurationChangeListener);
 	}
 }

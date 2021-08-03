@@ -1,6 +1,7 @@
 package game.tictactoe.views;
 
 import game.tictactoe.managers.ApplicationManager;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,6 +20,7 @@ public class HeaderView implements ResizableView {
 		
 		this.goBackButton = new Button("<");
 		this.title = new Label(titleText);
+		this.title.setAlignment(Pos.CENTER);
 		
 		this.root.getChildren().addAll(this.goBackButton, this.title);
 		this.setupGoBackListener();
