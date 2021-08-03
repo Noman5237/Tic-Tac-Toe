@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 	
@@ -14,6 +15,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+//		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.setScene(Main.scene);
 		ApplicationManager.getInstance().startActivity(MainActivity.class);
 		primaryStage.setTitle("Ultimate Tic Tac Toe");

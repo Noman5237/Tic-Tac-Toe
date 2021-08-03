@@ -41,4 +41,12 @@ public class HeaderView implements ResizableView {
 	public Node getRoot() {
 		return this.root;
 	}
+	
+	public Button getGoBackButton() {
+		return goBackButton;
+	}
+	
+	public Label getTitle() {
+		return title;
+	}
 }

@@ -44,7 +44,7 @@ public class ApplicationManager {
 	}
 	
 	public void setView(Parent root) {
-		this.applicationConfiguration.bindWidthNHeight((Region) root);
+		this.applicationConfiguration.bindWindow((Region) root);
 		Main.setSceneRoot(root);
 	}
 	

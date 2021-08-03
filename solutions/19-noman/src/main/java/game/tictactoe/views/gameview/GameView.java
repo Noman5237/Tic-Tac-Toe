@@ -1,11 +1,14 @@
 package game.tictactoe.views.gameview;
 
+import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.players.classic.UIPlayer;
 import game.tictactoe.players.classic.ai.RandomAIPlayer;
 import game.tictactoe.views.HeaderView;
 import game.tictactoe.views.ResizableView;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class GameView implements ResizableView {
 	
@@ -17,6 +20,11 @@ public class GameView implements ResizableView {
 	private final ResetRestartView resetRestartView;
 	
 	private final int VERTICAL_WEIGHT = 10;
+	private final Insets MARGINS =
+			new Insets(0,
+					0,
+					this.VERTICAL_WEIGHT * 1.5,
+					0);
 	
 	public GameView(double width, double height) {
 		this.root = new VBox();
@@ -26,6 +34,10 @@ public class GameView implements ResizableView {
 		this.boardView = new BoardView(width, height);
 		this.resetRestartView = new ResetRestartView();
 		
+		this.setupContainer(width, height);
+	}
+	
+	private void setupContainer(double width, double height) {
 		this.root.getChildren().addAll(
 				this.headerView.getRoot(),
 				this.playerChoiceView.getRoot(),
@@ -46,12 +58,11 @@ public class GameView implements ResizableView {
 		this.scoreView.resize(width, unitHeight);
 		this.boardView.resize(width, unitHeight * 6);
 		this.resetRestartView.resize(width, unitHeight);
-		
-		this.resizeFonts();
+		this.resizeFonts(ApplicationManager.getInstance().getApplicationConfiguration().getWindowScaleY());
 	}
 	
-	private void resizeFonts() {
-	
+	private void resizeFonts(double scaleY) {
+		// TODO: new font size = default font size * scaleY
 	}
 	
 	@Override

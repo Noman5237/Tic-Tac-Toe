@@ -1,5 +1,6 @@
 package game.tictactoe.views;
 
+import game.tictactoe.managers.ApplicationManager;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -22,6 +23,8 @@ public class MainView implements ResizableView {
 					this.VERTICAL_WEIGHT * 1.5,
 					this.HORIZONTAL_WEIGHT);
 	
+	private final double defaultFontSize = 32;
+	
 	public MainView(double width, double height) {
 		this.playButton = new Button("play game".toUpperCase());
 		this.optionsButton = new Button("options".toUpperCase());
@@ -29,8 +32,8 @@ public class MainView implements ResizableView {
 		this.root = new VBox();
 		
 		this.setupContainer();
+		this.setupMargins();
 		this.root.setPrefSize(width, height);
-		this.setupButtonMargins();
 	}
 	
 	private void setupContainer() {
@@ -38,7 +41,7 @@ public class MainView implements ResizableView {
 		this.root.setAlignment(Pos.CENTER);
 	}
 	
-	private void setupButtonMargins() {
+	private void setupMargins() {
 		VBox.setMargin(this.playButton, this.BUTTON_MARGINS);
 		VBox.setMargin(this.optionsButton, this.BUTTON_MARGINS);
 		VBox.setMargin(this.aboutButton, this.BUTTON_MARGINS);
@@ -47,17 +50,16 @@ public class MainView implements ResizableView {
 	@Override
 	public void resize(double width, double height) {
 		this.root.resize(width, height);
-		this.resizeButtons(width, height);
+		double unitWidth = width / this.HORIZONTAL_WEIGHT;
+		double unitHeight = height / this.VERTICAL_WEIGHT;
+		this.playButton.setPrefSize(unitWidth, unitHeight);
+		this.optionsButton.setPrefSize(unitWidth, unitHeight);
+		this.aboutButton.setPrefSize(unitWidth, unitHeight);
+		this.resizeFonts(ApplicationManager.getInstance().getApplicationConfiguration().getWindowScaleY());
 	}
 	
-	private void resizeButtons(double width, double height) {
-		this.playButton.setPrefSize(width / this.HORIZONTAL_WEIGHT, height / this.VERTICAL_WEIGHT);
-		this.optionsButton.setPrefSize(width / this.HORIZONTAL_WEIGHT, height / this.VERTICAL_WEIGHT);
-		this.aboutButton.setPrefSize(width / this.HORIZONTAL_WEIGHT, height / this.VERTICAL_WEIGHT);
-		
-		this.playButton.setFont(Font.font(height / (this.VERTICAL_WEIGHT * this.VERTICAL_WEIGHT)));
-		this.optionsButton.setFont(Font.font(height / (this.VERTICAL_WEIGHT * this.VERTICAL_WEIGHT)));
-		this.aboutButton.setFont(Font.font(height / (this.VERTICAL_WEIGHT * this.VERTICAL_WEIGHT)));
+	private void resizeFonts(double scaleY) {
+		// TODO: new font size = default font size * scaleY
 	}
 	
 	@Override
