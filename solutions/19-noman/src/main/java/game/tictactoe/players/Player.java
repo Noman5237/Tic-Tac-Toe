@@ -1,4 +1,4 @@
-package game.tictactoe.players.classic;
+package game.tictactoe.players;
 
 import game.tictactoe.models.Board;
 import game.tictactoe.models.states.CellState;

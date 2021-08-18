@@ -1,6 +1,6 @@
-package game.tictactoe.players.classic.ai;
+package game.tictactoe.players.ai;
 
-import game.tictactoe.players.classic.Player;
+import game.tictactoe.players.Player;
 import game.tictactoe.managers.GameManager;
 import game.tictactoe.models.Board;
 import game.tictactoe.models.states.CellState;

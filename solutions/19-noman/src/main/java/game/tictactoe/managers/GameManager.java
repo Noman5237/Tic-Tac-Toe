@@ -5,7 +5,7 @@ import game.tictactoe.models.Board;
 import game.tictactoe.models.Move;
 import game.tictactoe.models.states.CellState;
 import game.tictactoe.models.states.RoundState;
-import game.tictactoe.players.classic.Player;
+import game.tictactoe.players.Player;
 
 public class GameManager {
 	

@@ -1,10 +1,10 @@
 module game.tictactoe {
 	requires javafx.controls;
 	requires javafx.graphics;
+	requires java.desktop;
 	
-	exports game.tictactoe.models;
 	exports game.tictactoe.activities;
-	exports game.tictactoe.players.classic;
+	exports game.tictactoe.players;
 	exports game.tictactoe.managers;
 	exports game.tictactoe;
 	exports game.tictactoe.views;

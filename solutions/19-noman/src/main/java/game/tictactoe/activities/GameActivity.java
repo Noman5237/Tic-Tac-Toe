@@ -5,7 +5,7 @@ import game.tictactoe.managers.GameManager;
 import game.tictactoe.models.Board;
 import game.tictactoe.models.states.ApplicationConfiguration;
 import game.tictactoe.models.states.CellState;
-import game.tictactoe.players.classic.Player;
+import game.tictactoe.players.Player;
 import game.tictactoe.views.gameview.GameView;
 import javafx.scene.control.ComboBox;
 

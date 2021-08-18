@@ -1,4 +1,4 @@
-package game.tictactoe.players.classic;
+package game.tictactoe.players;
 
 import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.managers.GameManager;

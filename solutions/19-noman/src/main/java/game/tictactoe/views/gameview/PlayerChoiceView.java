@@ -1,6 +1,6 @@
 package game.tictactoe.views.gameview;
 
-import game.tictactoe.players.classic.Player;
+import game.tictactoe.players.Player;
 import game.tictactoe.views.ResizableView;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;

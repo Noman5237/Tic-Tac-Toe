@@ -1,14 +1,13 @@
 package game.tictactoe.views.gameview;
 
 import game.tictactoe.managers.ApplicationManager;
-import game.tictactoe.players.classic.UIPlayer;
-import game.tictactoe.players.classic.ai.RandomAIPlayer;
+import game.tictactoe.players.UIPlayer;
+import game.tictactoe.players.ai.RandomAIPlayer;
 import game.tictactoe.views.HeaderView;
 import game.tictactoe.views.ResizableView;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 public class GameView implements ResizableView {
 	

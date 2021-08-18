@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 public class MainView implements ResizableView {
 	
@@ -31,9 +30,17 @@ public class MainView implements ResizableView {
 		this.aboutButton = new Button("about".toUpperCase());
 		this.root = new VBox();
 		
+		this.setupId();
 		this.setupContainer();
 		this.setupMargins();
 		this.root.setPrefSize(width, height);
+	}
+	
+	private void setupId() {
+		this.root.setId("main-root-vbox");
+		this.playButton.setId("main-play-button");
+		this.optionsButton.setId("main-options-button");
+		this.aboutButton.setId("main-about-button");
 	}
 	
 	private void setupContainer() {
