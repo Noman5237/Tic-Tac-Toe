@@ -1,6 +1,8 @@
 package game.tictactoe.views.gameview;
 
+import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.models.Board;
+import game.tictactoe.models.Theme;
 import game.tictactoe.models.states.CellState;
 import game.tictactoe.views.ResizableView;
 import javafx.scene.Node;
@@ -12,6 +14,7 @@ import javafx.scene.transform.Scale;
 
 public class BoardView implements ResizableView {
 	
+	private final Theme applicationTheme;
 	private final Canvas canvas;
 	private final GraphicsContext ctx;
 	
@@ -22,16 +25,17 @@ public class BoardView implements ResizableView {
 	private Affine affine;
 	
 	public BoardView(double width, double height) {
+		this.applicationTheme = ApplicationManager.getInstance().getTheme();
 		this.canvas = new Canvas(width, height);
 		
 		// graphics context
 		this.ctx = this.canvas.getGraphicsContext2D();
 		
-		this.ctx.setLineWidth(LINE_WIDTH);
-		
-		// TODO: Themes
-		this.ctx.setFill(Color.LIGHTGRAY);
-		this.ctx.setStroke(Color.BLACK);
+//		this.ctx.setLineWidth(LINE_WIDTH);
+//
+//		// TODO: Themes
+//		this.ctx.setFill(Color.LIGHTGRAY);
+//		this.ctx.setStroke(Color.BLACK);
 		
 		this.reset();
 		this.resize(width, height);
@@ -43,33 +47,36 @@ public class BoardView implements ResizableView {
 			for (int x = 0; x < Board.SIZE; x++) {
 				CellState cellState = board.getCellState(x, y);
 				if (cellState == CellState.X) {
-					this.drawX(x + OFFSET, y + OFFSET);
+					this.drawX(x, y);
 				} else if (cellState == CellState.O) {
-					this.drawO(x + OFFSET, y + OFFSET);
+					this.drawO(x, y);
 				}
 			}
 		}
 	}
 	
 	private void drawX(double x, double y) {
-		this.ctx.strokeLine(x, y, x + BoardView.RADIUS * 2, y + BoardView.RADIUS * 2);
-		this.ctx.strokeLine(x + BoardView.RADIUS * 2, y, x, y + BoardView.RADIUS * 2);
+		this.ctx.drawImage(applicationTheme.getX(), x, y, 1, 1);
+//		this.ctx.strokeLine(x, y, x + BoardView.RADIUS * 2, y + BoardView.RADIUS * 2);
+//		this.ctx.strokeLine(x + BoardView.RADIUS * 2, y, x, y + BoardView.RADIUS * 2);
 	}
 	
 	private void drawO(double x, double y) {
-		this.ctx.strokeOval(x, y, BoardView.RADIUS * 2, BoardView.RADIUS * 2);
+		this.ctx.drawImage(applicationTheme.getO(), x, y, 1, 1);
+//		this.ctx.strokeOval(x, y, BoardView.RADIUS * 2, BoardView.RADIUS * 2);
 	}
 	
 	public void reset() {
-		this.ctx.fillRect(0, 0, Board.SIZE, Board.SIZE);
-		
-		// Vertical Lines
-		this.ctx.strokeLine(1, 0, 1, Board.SIZE);
-		this.ctx.strokeLine(2, 0, 2, Board.SIZE);
-		
-		// Horizontal Lines
-		this.ctx.strokeLine(0, 1, Board.SIZE, 1);
-		this.ctx.strokeLine(0, 2, Board.SIZE, 2);
+		this.ctx.drawImage(applicationTheme.getBoard(), 0, 0, Board.SIZE, Board.SIZE);
+//		this.ctx.fillRect(0, 0, Board.SIZE, Board.SIZE);
+//
+//		// Vertical Lines
+//		this.ctx.strokeLine(1, 0, 1, Board.SIZE);
+//		this.ctx.strokeLine(2, 0, 2, Board.SIZE);
+//
+//		// Horizontal Lines
+//		this.ctx.strokeLine(0, 1, Board.SIZE, 1);
+//		this.ctx.strokeLine(0, 2, Board.SIZE, 2);
 	}
 	
 	@Override
