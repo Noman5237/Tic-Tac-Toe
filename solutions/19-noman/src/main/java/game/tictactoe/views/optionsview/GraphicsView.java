@@ -21,7 +21,7 @@ public class GraphicsView implements ResizableView {
 	}
 	
 	private void setupRoot() {
-		this.root.getChildren().addAll(themes);
+		this.root.getChildren().addAll(this.themes);
 	}
 	
 	@Override
@@ -31,10 +31,10 @@ public class GraphicsView implements ResizableView {
 	
 	@Override
 	public VBox getRoot() {
-		return root;
+		return this.root;
 	}
 	
 	public ChoiceBox<String> getThemes() {
-		return themes;
+		return this.themes;
 	}
 }

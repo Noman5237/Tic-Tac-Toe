@@ -8,7 +8,6 @@ import game.tictactoe.views.ResizableView;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.Scale;
 
@@ -18,10 +17,6 @@ public class BoardView implements ResizableView {
 	private final Canvas canvas;
 	private final GraphicsContext ctx;
 	
-	private static final double RADIUS = 0.25;
-	private static final double LINE_WIDTH = RADIUS / 4.0;
-	private static final double OFFSET = 0.25;
-	
 	private Affine affine;
 	
 	public BoardView(double width, double height) {
@@ -30,12 +25,6 @@ public class BoardView implements ResizableView {
 		
 		// graphics context
 		this.ctx = this.canvas.getGraphicsContext2D();
-		
-//		this.ctx.setLineWidth(LINE_WIDTH);
-//
-//		// TODO: Themes
-//		this.ctx.setFill(Color.LIGHTGRAY);
-//		this.ctx.setStroke(Color.BLACK);
 		
 		this.reset();
 		this.resize(width, height);
@@ -56,27 +45,15 @@ public class BoardView implements ResizableView {
 	}
 	
 	private void drawX(double x, double y) {
-		this.ctx.drawImage(applicationTheme.getX(), x, y, 1, 1);
-//		this.ctx.strokeLine(x, y, x + BoardView.RADIUS * 2, y + BoardView.RADIUS * 2);
-//		this.ctx.strokeLine(x + BoardView.RADIUS * 2, y, x, y + BoardView.RADIUS * 2);
+		this.ctx.drawImage(this.applicationTheme.getX(), x, y, 1, 1);
 	}
 	
 	private void drawO(double x, double y) {
-		this.ctx.drawImage(applicationTheme.getO(), x, y, 1, 1);
-//		this.ctx.strokeOval(x, y, BoardView.RADIUS * 2, BoardView.RADIUS * 2);
+		this.ctx.drawImage(this.applicationTheme.getO(), x, y, 1, 1);
 	}
 	
 	public void reset() {
-		this.ctx.drawImage(applicationTheme.getBoard(), 0, 0, Board.SIZE, Board.SIZE);
-//		this.ctx.fillRect(0, 0, Board.SIZE, Board.SIZE);
-//
-//		// Vertical Lines
-//		this.ctx.strokeLine(1, 0, 1, Board.SIZE);
-//		this.ctx.strokeLine(2, 0, 2, Board.SIZE);
-//
-//		// Horizontal Lines
-//		this.ctx.strokeLine(0, 1, Board.SIZE, 1);
-//		this.ctx.strokeLine(0, 2, Board.SIZE, 2);
+		this.ctx.drawImage(this.applicationTheme.getBoard(), 0, 0, Board.SIZE, Board.SIZE);
 	}
 	
 	@Override

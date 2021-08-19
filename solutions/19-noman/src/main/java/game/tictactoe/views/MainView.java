@@ -22,8 +22,6 @@ public class MainView implements ResizableView {
 					this.VERTICAL_WEIGHT * 1.5,
 					this.HORIZONTAL_WEIGHT);
 	
-	private final double defaultFontSize = 32;
-	
 	public MainView(double width, double height) {
 		this.root = new VBox();
 		this.playButton = new Button("play game".toUpperCase());

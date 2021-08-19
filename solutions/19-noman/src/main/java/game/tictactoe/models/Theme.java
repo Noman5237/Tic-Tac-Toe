@@ -16,8 +16,8 @@ public class Theme {
 	public Theme(String name, Image board, Image x, Image o, String stylesheetPath) {
 		this.name = name;
 		this.board = board;
-		X = x;
-		O = o;
+		this.X = x;
+		this.O = o;
 		this.stylesheetPath = stylesheetPath;
 	}
 	
@@ -31,22 +31,22 @@ public class Theme {
 	}
 	
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	
 	public Image getBoard() {
-		return board;
+		return this.board;
 	}
 	
 	public Image getX() {
-		return X;
+		return this.X;
 	}
 	
 	public Image getO() {
-		return O;
+		return this.O;
 	}
 	
 	public String getStylesheetPath() {
-		return stylesheetPath;
+		return this.stylesheetPath;
 	}
 }

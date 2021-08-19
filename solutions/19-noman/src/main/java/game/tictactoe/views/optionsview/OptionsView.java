@@ -29,13 +29,13 @@ public class OptionsView implements ResizableView {
 	}
 	
 	private void setupCategories() {
-		Tab graphicsTab = new Tab("Graphics", graphicsView.getRoot());
+		Tab graphicsTab = new Tab("Graphics", this.graphicsView.getRoot());
 		this.optionCategories.getTabs().addAll(graphicsTab);
 		this.optionCategories.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 	}
 	
 	private void setupRoot() {
-		this.root.getChildren().addAll(headerView.getRoot(), this.optionCategories);
+		this.root.getChildren().addAll(this.headerView.getRoot(), this.optionCategories);
 	}
 	
 	@Override
@@ -49,6 +49,6 @@ public class OptionsView implements ResizableView {
 	}
 	
 	public GraphicsView getGraphicsView() {
-		return graphicsView;
+		return this.graphicsView;
 	}
 }

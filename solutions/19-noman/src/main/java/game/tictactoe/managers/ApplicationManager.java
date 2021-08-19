@@ -64,11 +64,11 @@ public class ApplicationManager {
 	}
 	
 	public Theme getTheme() {
-		return theme;
+		return this.theme;
 	}
 	
 	public String getPreferencePath() {
-		return preferencePath;
+		return this.preferencePath;
 	}
 	
 	public void setTheme(Theme theme) {

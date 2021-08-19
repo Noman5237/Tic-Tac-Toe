@@ -10,12 +10,12 @@ public class OptionsActivity implements Activity {
 	
 	public OptionsActivity() {
 		this.optionsView = new OptionsView();
-		new Graphics(optionsView.getGraphicsView());
+		new Graphics(this.optionsView.getGraphicsView());
 	}
 	
 	@Override
 	public ResizableView getView() {
-		return optionsView;
+		return this.optionsView;
 	}
 	
 	@Override

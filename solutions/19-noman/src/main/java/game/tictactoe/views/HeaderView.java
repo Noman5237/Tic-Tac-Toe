@@ -9,9 +9,9 @@ import javafx.scene.layout.HBox;
 
 public class HeaderView implements ResizableView {
 	
-	private HBox root;
-	private Button goBackButton;
-	private Label title;
+	private final HBox root;
+	private final Button goBackButton;
+	private final Label title;
 	
 	private final int HORIZONTAL_WEIGHT = 10;
 	
@@ -54,10 +54,10 @@ public class HeaderView implements ResizableView {
 	}
 	
 	public Button getGoBackButton() {
-		return goBackButton;
+		return this.goBackButton;
 	}
 	
 	public Label getTitle() {
-		return title;
+		return this.title;
 	}
 }

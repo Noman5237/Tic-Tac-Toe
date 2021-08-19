@@ -20,7 +20,7 @@ public class Graphics {
 	
 	private void setupThemeOptions() {
 		Arrays.asList(Objects.requireNonNull(Paths.get(ApplicationManager.getInstance().getPreferencePath(), "Themes").toFile().list()))
-				.forEach(themeName -> graphicsView.getThemes().getItems().add(themeName));
+				.forEach(themeName -> this.graphicsView.getThemes().getItems().add(themeName));
 	}
 	
 	private void setupActions() {
