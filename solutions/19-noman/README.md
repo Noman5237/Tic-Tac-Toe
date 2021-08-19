@@ -25,5 +25,5 @@ For Linux
 For Windows
 
 ```
-./gradle.bat run
+./gradlew.bat run
 ```
