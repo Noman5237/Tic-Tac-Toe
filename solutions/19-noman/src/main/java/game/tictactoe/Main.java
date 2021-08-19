@@ -16,9 +16,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 //		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.setScene(Main.scene);
-//		String path = Paths.get(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(), "TicTacToe", "Themes", "Default", "style.css").toUri().toString();
-//		System.out.println(path);
-//		Main.scene.getStylesheets().add(path);
 		ApplicationManager.getInstance().startActivity(MainActivity.class);
 		primaryStage.setTitle("Ultimate Tic Tac Toe");
 		primaryStage.show();
@@ -28,5 +25,8 @@ public class Main extends Application {
 		Main.scene.setRoot(root);
 	}
 	
-	
+	public static void setRootStyle(String stylesheetPath) {
+		Main.scene.getStylesheets().clear();
+		Main.scene.getStylesheets().add(stylesheetPath);
+	}
 }
