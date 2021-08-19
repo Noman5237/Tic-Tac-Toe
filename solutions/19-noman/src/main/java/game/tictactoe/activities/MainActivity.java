@@ -1,5 +1,6 @@
 package game.tictactoe.activities;
 
+import game.tictactoe.activities.optionsactivity.OptionsActivity;
 import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.managers.GameManager;
 import game.tictactoe.models.states.ApplicationConfiguration;
@@ -37,6 +38,10 @@ public class MainActivity implements Activity {
 		this.mainView.getPlayButton().setOnAction(event -> {
 			this.applicationManager.startActivity(GameActivity.class);
 			GameManager.getInstance().start();
+		});
+		
+		this.mainView.getOptionsButton().setOnAction(event -> {
+			this.applicationManager.startActivity(OptionsActivity.class);
 		});
 	}
 	

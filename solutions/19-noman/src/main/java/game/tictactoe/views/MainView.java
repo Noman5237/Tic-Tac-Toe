@@ -25,25 +25,25 @@ public class MainView implements ResizableView {
 	private final double defaultFontSize = 32;
 	
 	public MainView(double width, double height) {
+		this.root = new VBox();
 		this.playButton = new Button("play game".toUpperCase());
 		this.optionsButton = new Button("options".toUpperCase());
 		this.aboutButton = new Button("about".toUpperCase());
-		this.root = new VBox();
 		
-		this.setupId();
-		this.setupContainer();
+		this.setupIds();
+		this.setupRoot();
 		this.setupMargins();
 		this.root.setPrefSize(width, height);
 	}
 	
-	private void setupId() {
+	public void setupIds() {
 		this.root.setId("main-root-vbox");
 		this.playButton.setId("main-play-button");
 		this.optionsButton.setId("main-options-button");
 		this.aboutButton.setId("main-about-button");
 	}
 	
-	private void setupContainer() {
+	private void setupRoot() {
 		this.root.getChildren().addAll(this.playButton, this.optionsButton, this.aboutButton);
 		this.root.setAlignment(Pos.CENTER);
 	}
