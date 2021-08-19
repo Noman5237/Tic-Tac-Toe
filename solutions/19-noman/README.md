@@ -11,7 +11,7 @@ A simple tic-tac-toe game built using JavaFX.
 
 ```shell
 mkdir ~/Documents/TicTacToe/
-cp ./assets/Themes/ ~/Documents/TicTacToe/ 
+cp -r ./assets/Themes/ ~/Documents/TicTacToe/ 
 ```
 
 ## Run the project
