@@ -22,15 +22,19 @@ public class HeaderView implements ResizableView {
 		this.title = new Label(titleText);
 		this.title.setAlignment(Pos.CENTER);
 		
-		this.root.getChildren().addAll(this.goBackButton, this.title);
-		this.setupId();
+		this.setupIds();
+		this.setupRoot();
 		this.setupGoBackListener();
 	}
 	
-	private void setupId() {
+	public void setupIds() {
 		this.root.setId("header-root-vbox");
 		this.goBackButton.setId("header-back-button");
 		this.title.setId("header-title-label");
+	}
+	
+	private void setupRoot() {
+		this.root.getChildren().addAll(this.goBackButton, this.title);
 	}
 	
 	private void setupGoBackListener() {

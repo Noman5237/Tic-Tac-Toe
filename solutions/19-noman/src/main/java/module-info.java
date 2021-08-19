@@ -8,6 +8,9 @@ module game.tictactoe {
 	exports game.tictactoe.managers;
 	exports game.tictactoe;
 	exports game.tictactoe.views;
+	exports game.tictactoe.models;
 	exports game.tictactoe.models.states;
 	exports game.tictactoe.views.gameview;
+	exports game.tictactoe.views.optionsview;
+	exports game.tictactoe.activities.optionsactivity;
 }
