@@ -2,11 +2,14 @@ package game.tictactoe.managers;
 
 import game.tictactoe.Main;
 import game.tictactoe.activities.Activity;
+import game.tictactoe.models.Theme;
 import game.tictactoe.models.states.ApplicationConfiguration;
 import javafx.scene.Parent;
 import javafx.scene.layout.Region;
 
+import javax.swing.filechooser.FileSystemView;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Paths;
 import java.util.Stack;
 
 public class ApplicationManager {
@@ -15,15 +18,19 @@ public class ApplicationManager {
 	
 	private final Stack<Activity> activities;
 	private final ApplicationConfiguration applicationConfiguration;
+	private final String preferencePath;
+	private Theme theme;
 	
 	private ApplicationManager() {
 		this.activities = new Stack<>();
 		this.applicationConfiguration = new ApplicationConfiguration();
+		this.preferencePath = Paths.get(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(), "TicTacToe").toString();
 	}
 	
 	public static ApplicationManager getInstance() {
 		if (instance == null) {
 			instance = new ApplicationManager();
+			instance.setTheme(Theme.loadTheme("Default"));
 		}
 		return instance;
 	}
@@ -48,11 +55,25 @@ public class ApplicationManager {
 		Main.setSceneRoot(root);
 	}
 	
+	public ApplicationConfiguration getApplicationConfiguration() {
+		return this.applicationConfiguration;
+	}
+	
 	public Activity getCurrentActivity() {
 		return this.activities.peek();
 	}
 	
-	public ApplicationConfiguration getApplicationConfiguration() {
-		return this.applicationConfiguration;
+	public Theme getTheme() {
+		return theme;
 	}
+	
+	public String getPreferencePath() {
+		return preferencePath;
+	}
+	
+	public void setTheme(Theme theme) {
+		this.theme = theme;
+		Main.setRootStyle(theme.getStylesheetPath());
+	}
+	
 }
