@@ -15,7 +15,7 @@ public class BoardTest {
 	
 	@BeforeEach
 	void setUp() {
-		board = new Board();
+		this.board = new Board();
 	}
 	
 	@ParameterizedTest (name = "set board[{0}][{1}] = {2} and assert board[{0}][{1}] == {2}")
@@ -26,8 +26,8 @@ public class BoardTest {
 			"0, 0, O"
 	})
 	void testGetNSetCellState(int x, int y, CellState cellState) {
-		board.setCellState(x, y, cellState);
-		assertEquals(cellState, board.getCellState(x, y));
+		this.board.setCellState(x, y, cellState);
+		assertEquals(cellState, this.board.getCellState(x, y));
 	}
 	
 	@Test
@@ -35,8 +35,14 @@ public class BoardTest {
 	void testBoardIsEmptyAtStart() {
 		for (int y = 0; y < Board.SIZE; y++) {
 			for (int x = 0; x < Board.SIZE; x++) {
-				assertEquals(CellState.EMPTY, board.getCellState(x, y));
+				assertEquals(CellState.EMPTY, this.board.getCellState(x, y));
 			}
 		}
+	}
+	
+	@Test
+	@DisplayName ("board status")
+	void testBoardStatus() {
+	
 	}
 }
