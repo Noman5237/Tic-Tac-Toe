@@ -12,4 +12,12 @@ public enum CellState {
 		
 		return true;
 	}
+	
+	public CellState getInverse() {
+		if (this == EMPTY) {
+			return null;
+		}
+		
+		return this == X ? O : X;
+	}
 }

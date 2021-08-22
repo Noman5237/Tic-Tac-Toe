@@ -19,7 +19,7 @@ public class Graphics {
 	}
 	
 	private void setupThemeOptions() {
-		Arrays.asList(Objects.requireNonNull(Paths.get(ApplicationManager.getInstance().getPreferencePath(), "Themes").toFile().list()))
+		Arrays.asList(Objects.requireNonNull(Paths.get(ApplicationManager.getInstance().getApplicationStoragePath(), "Themes").toFile().list()))
 				.forEach(themeName -> this.graphicsView.getThemes().getItems().add(themeName));
 	}
 	

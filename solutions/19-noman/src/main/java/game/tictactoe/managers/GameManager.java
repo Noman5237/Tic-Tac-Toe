@@ -18,7 +18,6 @@ public class GameManager {
 	private int player2Score;
 	private Player currentPlayer;
 	private Player lastRoundWinnerPlayer;
-	private CellState cellState;
 	private GameActivity gameActivity;
 	private final ApplicationManager applicationManager;
 	
@@ -85,14 +84,15 @@ public class GameManager {
 	}
 	
 	private RoundState getRoundStatus() {
+		CellState cellState;
 		// vertical
 		for (int x = 0; x < Board.SIZE; x++) {
-			this.cellState = this.board.getCellState(x, 0);
-			if (this.cellState.equals(this.board.getCellState(x, 1), this.board.getCellState(x, 2))) {
-				if (this.cellState != CellState.EMPTY) {
-					if (this.cellState == CellState.X) {
+			cellState = this.board.getCellState(x, 0);
+			if (cellState.equals(this.board.getCellState(x, 1), this.board.getCellState(x, 2))) {
+				if (cellState != CellState.EMPTY) {
+					if (cellState == CellState.X) {
 						return RoundState.X_WINS;
-					} else if (this.cellState == CellState.O) {
+					} else if (cellState == CellState.O) {
 						return RoundState.O_WINS;
 					} else {
 						return RoundState.DRAW;
@@ -103,10 +103,10 @@ public class GameManager {
 		
 		// horizontal
 		for (int y = 0; y < Board.SIZE; y++) {
-			this.cellState = this.board.getCellState(0, y);
-			if (this.cellState.equals(this.board.getCellState(1, y), this.board.getCellState(2, y))) {
-				if (this.cellState != CellState.EMPTY) {
-					if (this.cellState == CellState.X) {
+			cellState = this.board.getCellState(0, y);
+			if (cellState.equals(this.board.getCellState(1, y), this.board.getCellState(2, y))) {
+				if (cellState != CellState.EMPTY) {
+					if (cellState == CellState.X) {
 						return RoundState.X_WINS;
 					} else {
 						return RoundState.O_WINS;
@@ -116,10 +116,10 @@ public class GameManager {
 		}
 		
 		// diagonal
-		this.cellState = this.board.getCellState(0, 0);
-		if (this.cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(2, 2))) {
-			if (this.cellState != CellState.EMPTY) {
-				if (this.cellState == CellState.X) {
+		cellState = this.board.getCellState(0, 0);
+		if (cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(2, 2))) {
+			if (cellState != CellState.EMPTY) {
+				if (cellState == CellState.X) {
 					return RoundState.X_WINS;
 				} else {
 					return RoundState.O_WINS;
@@ -127,10 +127,10 @@ public class GameManager {
 			}
 		}
 		
-		this.cellState = this.board.getCellState(2, 0);
-		if (this.cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(0, 2))) {
-			if (this.cellState != CellState.EMPTY) {
-				if (this.cellState == CellState.X) {
+		cellState = this.board.getCellState(2, 0);
+		if (cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(0, 2))) {
+			if (cellState != CellState.EMPTY) {
+				if (cellState == CellState.X) {
 					return RoundState.X_WINS;
 				} else {
 					return RoundState.O_WINS;

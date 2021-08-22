@@ -18,13 +18,13 @@ public class ApplicationManager {
 	
 	private final Stack<Activity> activities;
 	private final ApplicationConfiguration applicationConfiguration;
-	private final String preferencePath;
+	private final String applicationStoragePath;
 	private Theme theme;
 	
 	private ApplicationManager() {
 		this.activities = new Stack<>();
 		this.applicationConfiguration = new ApplicationConfiguration();
-		this.preferencePath = Paths.get(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(), "TicTacToe").toString();
+		this.applicationStoragePath = Paths.get(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(), "TicTacToe").toString();
 	}
 	
 	public static ApplicationManager getInstance() {
@@ -67,8 +67,8 @@ public class ApplicationManager {
 		return this.theme;
 	}
 	
-	public String getPreferencePath() {
-		return this.preferencePath;
+	public String getApplicationStoragePath() {
+		return this.applicationStoragePath;
 	}
 	
 	public void setTheme(Theme theme) {
