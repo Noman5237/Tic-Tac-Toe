@@ -13,17 +13,21 @@ public class RandomAIPlayer extends AIPlayer {
 	
 	public RandomAIPlayer(CellState playerSymbol) {
 		super(playerSymbol);
-		random = new Random(new Date().getTime());
+		this.random = new Random(new Date().getTime());
 	}
 	
 	@Override
 	public Move generateNextMove(Board board) {
+		return this.getRandomMove(board);
+	}
+	
+	protected Move getRandomMove(Board board) {
 		int x;
 		int y;
 		do {
-			x = random.nextInt(Board.SIZE);
-			y = random.nextInt(Board.SIZE);
-			// refactor to a smarter loop
+			x = this.random.nextInt(Board.SIZE);
+			y = this.random.nextInt(Board.SIZE);
+			// TODO refactor to a smarter loop
 		} while (board.getCellState(x, y) != CellState.EMPTY);
 		
 		return new Move(x, y, super.getPlayerSymbol());
