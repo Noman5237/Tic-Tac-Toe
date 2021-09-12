@@ -30,7 +30,7 @@ public class ApplicationManager {
 	public static ApplicationManager getInstance() {
 		if (instance == null) {
 			instance = new ApplicationManager();
-			instance.setTheme(Theme.loadTheme("Default"));
+			instance.setTheme(Theme.loadTheme("Classic Electric"));
 		}
 		return instance;
 	}

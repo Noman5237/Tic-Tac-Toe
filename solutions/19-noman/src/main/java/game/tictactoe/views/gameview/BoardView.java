@@ -30,10 +30,10 @@ public class BoardView implements ResizableView {
 		// graphics context
 		this.ctx = this.canvas.getGraphicsContext2D();
 		
-		this.drawBackground();
 		this.resize(width, height);
 		this.timeline = new Timeline();
 		this.timeline.setCycleCount(Timeline.INDEFINITE);
+		this.draw(new Board());
 	}
 	
 	public void draw(Board board) {
