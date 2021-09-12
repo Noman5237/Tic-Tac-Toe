@@ -14,7 +14,10 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-//		primaryStage.initStyle(StageStyle.UNDECORATED);
+		StartApplication(primaryStage);
+	}
+	
+	public static void StartApplication(Stage primaryStage) {
 		primaryStage.setScene(Main.scene);
 		ApplicationManager.getInstance().startActivity(MainActivity.class);
 		primaryStage.setTitle("Ultimate Tic Tac Toe");
