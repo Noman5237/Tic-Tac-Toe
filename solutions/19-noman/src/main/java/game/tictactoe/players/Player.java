@@ -1,7 +1,7 @@
 package game.tictactoe.players;
 
 import game.tictactoe.models.Board;
-import game.tictactoe.models.states.CellState;
+import game.tictactoe.states.CellState;
 
 public abstract class Player {
 	
@@ -14,6 +14,6 @@ public abstract class Player {
 	public abstract void promptForNextMove(Board board);
 	
 	public CellState getPlayerSymbol() {
-		return playerSymbol;
+		return this.playerSymbol;
 	}
 }

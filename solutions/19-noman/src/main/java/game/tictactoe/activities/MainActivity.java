@@ -1,9 +1,9 @@
 package game.tictactoe.activities;
 
 import game.tictactoe.activities.optionsactivity.OptionsActivity;
+import game.tictactoe.config.ApplicationConfiguration;
 import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.managers.GameManager;
-import game.tictactoe.models.states.ApplicationConfiguration;
 import game.tictactoe.views.MainView;
 import javafx.beans.value.ChangeListener;
 

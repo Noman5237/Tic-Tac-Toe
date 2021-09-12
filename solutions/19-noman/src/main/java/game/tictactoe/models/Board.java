@@ -1,6 +1,6 @@
 package game.tictactoe.models;
 
-import game.tictactoe.models.states.CellState;
+import game.tictactoe.states.CellState;
 
 public class Board {
 	

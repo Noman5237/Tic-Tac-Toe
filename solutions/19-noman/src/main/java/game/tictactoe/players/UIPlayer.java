@@ -4,7 +4,7 @@ import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.managers.GameManager;
 import game.tictactoe.models.Board;
 import game.tictactoe.models.Move;
-import game.tictactoe.models.states.CellState;
+import game.tictactoe.states.CellState;
 import game.tictactoe.views.gameview.BoardView;
 import game.tictactoe.views.gameview.GameView;
 import javafx.geometry.Point2D;

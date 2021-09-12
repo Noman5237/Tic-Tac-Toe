@@ -2,8 +2,8 @@ package game.tictactoe.managers;
 
 import game.tictactoe.Main;
 import game.tictactoe.activities.Activity;
+import game.tictactoe.config.ApplicationConfiguration;
 import game.tictactoe.models.Theme;
-import game.tictactoe.models.states.ApplicationConfiguration;
 import javafx.scene.Parent;
 import javafx.scene.layout.Region;
 

@@ -1,4 +1,4 @@
-package game.tictactoe.models.states;
+package game.tictactoe.config;
 
 import javafx.beans.value.ChangeListener;
 import javafx.scene.layout.Region;
@@ -10,8 +10,8 @@ public class ApplicationConfiguration {
 	private final double defaultWindowWidth = 600;
 	private final double defaultWindowHeight = 800;
 	
-	private double windowWidth = defaultWindowWidth;
-	private double windowHeight = defaultWindowHeight;
+	private double windowWidth = this.defaultWindowWidth;
+	private double windowHeight = this.defaultWindowHeight;
 	private double windowScaleX = 1;
 	private double windowScaleY = 1;
 	
@@ -44,13 +44,13 @@ public class ApplicationConfiguration {
 	}
 	
 	public void setWindowWidth(double windowWidth) {
-		this.setWindowScaleX(windowWidth / defaultWindowWidth);
+		this.setWindowScaleX(windowWidth / this.defaultWindowWidth);
 		this.windowWidth = windowWidth;
 		this.notifyListeners();
 	}
 	
 	public void setWindowHeight(double windowHeight) {
-		this.setWindowScaleY(windowHeight / defaultWindowHeight);
+		this.setWindowScaleY(windowHeight / this.defaultWindowHeight);
 		this.windowHeight = windowHeight;
 		this.notifyListeners();
 	}
@@ -74,10 +74,10 @@ public class ApplicationConfiguration {
 	}
 	
 	public double getWindowScaleX() {
-		return windowScaleX;
+		return this.windowScaleX;
 	}
 	
 	public double getWindowScaleY() {
-		return windowScaleY;
+		return this.windowScaleY;
 	}
 }

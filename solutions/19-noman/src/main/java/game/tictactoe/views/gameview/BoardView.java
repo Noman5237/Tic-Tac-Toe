@@ -3,7 +3,7 @@ package game.tictactoe.views.gameview;
 import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.models.Board;
 import game.tictactoe.models.Theme;
-import game.tictactoe.models.states.CellState;
+import game.tictactoe.states.CellState;
 import game.tictactoe.views.ResizableView;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;

@@ -1,11 +1,11 @@
 package game.tictactoe.activities;
 
+import game.tictactoe.config.ApplicationConfiguration;
 import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.managers.GameManager;
 import game.tictactoe.models.Board;
-import game.tictactoe.models.states.ApplicationConfiguration;
-import game.tictactoe.models.states.CellState;
 import game.tictactoe.players.Player;
+import game.tictactoe.states.CellState;
 import game.tictactoe.views.gameview.GameView;
 import javafx.scene.control.ComboBox;
 
