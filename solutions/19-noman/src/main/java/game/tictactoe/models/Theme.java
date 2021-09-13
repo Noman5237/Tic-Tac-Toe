@@ -22,7 +22,7 @@ public class Theme {
 	}
 	
 	public static Theme loadTheme(String themeName) {
-		String themeDir = Paths.get(ApplicationManager.getInstance().getApplicationStoragePath(), "Themes", themeName).toString();
+		String themeDir = Paths.get(ApplicationManager.getInstance().getApplicationConfiguration().getApplicationStoragePath(), "Themes", themeName).toString();
 		String boardPath = Paths.get(themeDir, "Board.png").toUri().toString();
 		String XPath = Paths.get(themeDir, "X.png").toUri().toString();
 		String OPath = Paths.get(themeDir, "O.png").toUri().toString();

@@ -1,8 +1,12 @@
 package game.tictactoe.config;
 
+import game.tictactoe.Main;
+import game.tictactoe.models.Theme;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.layout.Region;
 
+import javax.swing.filechooser.FileSystemView;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class ApplicationConfiguration {
@@ -15,10 +19,14 @@ public class ApplicationConfiguration {
 	private double windowScaleX = 1;
 	private double windowScaleY = 1;
 	
+	private final String applicationStoragePath;
+	private Theme theme;
+	
 	ArrayList<ChangeListener<Boolean>> listeners;
 	
 	public ApplicationConfiguration() {
 		this.listeners = new ArrayList<>();
+		this.applicationStoragePath = Paths.get(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(), "TicTacToe").toString();
 	}
 	
 	public void addListener(ChangeListener<Boolean> changeListener) {
@@ -29,7 +37,7 @@ public class ApplicationConfiguration {
 		this.listeners.remove(changeListener);
 	}
 	
-	public void notifyListeners() {
+	private void notifyListeners() {
 		this.listeners.forEach(listener -> listener.changed(null, null, null));
 	}
 	
@@ -65,6 +73,12 @@ public class ApplicationConfiguration {
 		this.notifyListeners();
 	}
 	
+	public void setTheme(Theme theme) {
+		this.theme = theme;
+		Main.setRootStyle(theme.getStylesheetPath());
+		this.notifyListeners();
+	}
+	
 	public double getWindowWidth() {
 		return this.windowWidth;
 	}
@@ -80,4 +94,13 @@ public class ApplicationConfiguration {
 	public double getWindowScaleY() {
 		return this.windowScaleY;
 	}
+	
+	public String getApplicationStoragePath() {
+		return this.applicationStoragePath;
+	}
+	
+	public Theme getTheme() {
+		return this.theme;
+	}
+	
 }

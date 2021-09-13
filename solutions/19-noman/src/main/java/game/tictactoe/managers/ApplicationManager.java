@@ -7,9 +7,7 @@ import game.tictactoe.models.Theme;
 import javafx.scene.Parent;
 import javafx.scene.layout.Region;
 
-import javax.swing.filechooser.FileSystemView;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Paths;
 import java.util.Stack;
 
 public class ApplicationManager {
@@ -18,19 +16,16 @@ public class ApplicationManager {
 	
 	private final Stack<Activity> activities;
 	private final ApplicationConfiguration applicationConfiguration;
-	private final String applicationStoragePath;
-	private Theme theme;
 	
 	private ApplicationManager() {
 		this.activities = new Stack<>();
 		this.applicationConfiguration = new ApplicationConfiguration();
-		this.applicationStoragePath = Paths.get(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(), "TicTacToe").toString();
 	}
 	
 	public static ApplicationManager getInstance() {
 		if (instance == null) {
 			instance = new ApplicationManager();
-			instance.setTheme(Theme.loadTheme("Default"));
+			instance.applicationConfiguration.setTheme(Theme.loadTheme("Default"));
 		}
 		return instance;
 	}
@@ -62,18 +57,4 @@ public class ApplicationManager {
 	public Activity getCurrentActivity() {
 		return this.activities.peek();
 	}
-	
-	public Theme getTheme() {
-		return this.theme;
-	}
-	
-	public String getApplicationStoragePath() {
-		return this.applicationStoragePath;
-	}
-	
-	public void setTheme(Theme theme) {
-		this.theme = theme;
-		Main.setRootStyle(theme.getStylesheetPath());
-	}
-	
 }

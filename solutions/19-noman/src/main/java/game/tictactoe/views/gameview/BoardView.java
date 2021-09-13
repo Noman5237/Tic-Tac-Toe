@@ -20,7 +20,7 @@ public class BoardView implements ResizableView {
 	private Affine affine;
 	
 	public BoardView(double width, double height) {
-		this.applicationTheme = ApplicationManager.getInstance().getTheme();
+		this.applicationTheme = ApplicationManager.getInstance().getApplicationConfiguration().getTheme();
 		this.canvas = new Canvas(width, height);
 		
 		// graphics context
