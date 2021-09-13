@@ -7,6 +7,7 @@ import game.tictactoe.models.Board;
 import game.tictactoe.players.Player;
 import game.tictactoe.states.CellState;
 import game.tictactoe.views.gameview.GameView;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.ComboBox;
 
 import java.lang.reflect.InvocationTargetException;
@@ -15,6 +16,7 @@ public class GameActivity implements Activity {
 	
 	private GameView gameView;
 	private final ApplicationConfiguration applicationConfiguration;
+	private ChangeListener<Boolean> applicationConfigurationChangeListener;
 	
 	public GameActivity() {
 		this.applicationConfiguration = ApplicationManager.getInstance().getApplicationConfiguration();
@@ -33,7 +35,8 @@ public class GameActivity implements Activity {
 	}
 	
 	private void setupListeners() {
-		this.applicationConfiguration.addListener((observable, oldValue, newValue) -> this.gameView.resize(this.applicationConfiguration.getWindowWidth(), this.applicationConfiguration.getWindowHeight()));
+		this.applicationConfigurationChangeListener = (observable, oldValue, newValue) -> this.gameView.resize(this.applicationConfiguration.getWindowWidth(), this.applicationConfiguration.getWindowHeight());
+		this.applicationConfiguration.addListener(this.applicationConfigurationChangeListener);
 	}
 	
 	private void setupOnAction() {
@@ -84,6 +87,6 @@ public class GameActivity implements Activity {
 	
 	@Override
 	public void onDestroy() {
-	
+		this.applicationConfiguration.removeListener(this.applicationConfigurationChangeListener);
 	}
 }
