@@ -3,21 +3,20 @@ package game.tictactoe.managers;
 import game.tictactoe.activities.GameActivity;
 import game.tictactoe.models.Board;
 import game.tictactoe.models.Move;
+import game.tictactoe.models.Round;
 import game.tictactoe.players.Player;
-import game.tictactoe.states.CellState;
 import game.tictactoe.states.RoundState;
 
 public class GameManager {
 	
 	private static GameManager instance;
 	
-	private Board board;
 	private Player player1;
 	private Player player2;
 	private int player1Score;
 	private int player2Score;
-	private Player currentPlayer;
-	private Player lastRoundWinnerPlayer;
+	private Round currentRound;
+	private Player lastRoundWinner;
 	private GameActivity gameActivity;
 	private final ApplicationManager applicationManager;
 	
@@ -30,7 +29,7 @@ public class GameManager {
 	}
 	
 	private void setupListeners() {
-		this.applicationManager.getApplicationConfiguration().addListener((observable, oldValue, newValue) -> this.gameActivity.getView().getBoardView().draw(this.getCurrentBoard()));
+		this.applicationManager.getApplicationConfiguration().addListener((observable, oldValue, newValue) -> this.gameActivity.getView().getBoardView().draw(this.currentRound.getBoard()));
 	}
 	
 	public static GameManager getInstance() {
@@ -52,13 +51,14 @@ public class GameManager {
 	}
 	
 	public void restart() {
-		this.board = new Board();
-		this.currentPlayer = this.lastRoundWinnerPlayer;
-		this.updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning();
+		this.currentRound = new Round(new Board(), this.player1, this.player2);
+		this.updateBoardView();
+		this.currentRound.setCurrentPlayer(this.lastRoundWinner);
+		this.currentRound.promptCurrentPlayer();
 	}
 	
 	public void reset() {
-		this.lastRoundWinnerPlayer = this.player1;
+		this.lastRoundWinner = this.player1;
 		this.player1Score = 0;
 		this.player2Score = 0;
 		this.gameActivity.updatePlayer1Score(this.player1Score);
@@ -66,114 +66,22 @@ public class GameManager {
 		this.restart();
 	}
 	
-	private void updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning() {
-		Board currentBoard = this.getCurrentBoard();
+	public void onRoundEnd() {
+		RoundState roundStatus = this.currentRound.getRoundStatus();
+		if (roundStatus == RoundState.X_WINS) {
+			++this.player1Score;
+			this.gameActivity.updatePlayer1Score(this.player1Score);
+			this.lastRoundWinner = this.player1;
+		} else if (roundStatus == RoundState.O_WINS) {
+			++this.player2Score;
+			this.gameActivity.updatePlayer2Score(this.player2Score);
+			this.lastRoundWinner = this.player2;
+		}
+	}
+	
+	public void updateBoardView() {
+		Board currentBoard = this.currentRound.getBoard();
 		this.gameActivity.getView().getBoardView().draw(currentBoard);
-		RoundState roundStatus = this.getRoundStatus();
-		if (roundStatus == RoundState.RUNNING) {
-			this.currentPlayer.promptForNextMove(currentBoard);
-		} else {
-			if (roundStatus == RoundState.X_WINS) {
-				++this.player1Score;
-				this.gameActivity.updatePlayer1Score(this.player1Score);
-			} else if (roundStatus == RoundState.O_WINS) {
-				++this.player2Score;
-				this.gameActivity.updatePlayer2Score(this.player2Score);
-			}
-		}
-	}
-	
-	private RoundState getRoundStatus() {
-		CellState cellState;
-		// vertical
-		for (int x = 0; x < Board.SIZE; x++) {
-			cellState = this.board.getCellState(x, 0);
-			if (cellState.equals(this.board.getCellState(x, 1), this.board.getCellState(x, 2))) {
-				if (cellState != CellState.EMPTY) {
-					if (cellState == CellState.X) {
-						return RoundState.X_WINS;
-					} else if (cellState == CellState.O) {
-						return RoundState.O_WINS;
-					} else {
-						return RoundState.DRAW;
-					}
-				}
-			}
-		}
-		
-		// horizontal
-		for (int y = 0; y < Board.SIZE; y++) {
-			cellState = this.board.getCellState(0, y);
-			if (cellState.equals(this.board.getCellState(1, y), this.board.getCellState(2, y))) {
-				if (cellState != CellState.EMPTY) {
-					if (cellState == CellState.X) {
-						return RoundState.X_WINS;
-					} else {
-						return RoundState.O_WINS;
-					}
-				}
-			}
-		}
-		
-		// diagonal
-		cellState = this.board.getCellState(0, 0);
-		if (cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(2, 2))) {
-			if (cellState != CellState.EMPTY) {
-				if (cellState == CellState.X) {
-					return RoundState.X_WINS;
-				} else {
-					return RoundState.O_WINS;
-				}
-			}
-		}
-		
-		cellState = this.board.getCellState(2, 0);
-		if (cellState.equals(this.board.getCellState(1, 1), this.board.getCellState(0, 2))) {
-			if (cellState != CellState.EMPTY) {
-				if (cellState == CellState.X) {
-					return RoundState.X_WINS;
-				} else {
-					return RoundState.O_WINS;
-				}
-			}
-		}
-		
-		int emptyCellCount = this.countEmptyCells(this.board);
-		if (emptyCellCount > 0) {
-			return RoundState.RUNNING;
-		}
-		
-		return RoundState.DRAW;
-	}
-	
-	private int countEmptyCells(Board board) {
-		int count = 0;
-		for (int y = 0; y < Board.SIZE; y++) {
-			for (int x = 0; x < Board.SIZE; x++) {
-				if (board.getCellState(x, y) == CellState.EMPTY) {
-					++count;
-				}
-			}
-		}
-		
-		return count;
-	}
-	
-	public Board getCurrentBoard() {
-		return new Board(this.board);
-	}
-	
-	public void setNextMove(Move move) {
-		if (this.getRoundStatus() == RoundState.RUNNING) {
-			this.board.setCellState(move.getX(), move.getY(), move.getCellState());
-			if (this.currentPlayer == this.player1) {
-				this.currentPlayer = this.player2;
-			} else {
-				this.currentPlayer = this.player1;
-			}
-			
-			this.updateBoardViewNPromptCurrentPlayerForNextMoveIfRoundRunning();
-		}
 	}
 	
 	public void setPlayer1(Player player1) {
@@ -186,4 +94,7 @@ public class GameManager {
 		this.reset();
 	}
 	
+	public void setNextMove(Move move) {
+		this.currentRound.setNextMove(move);
+	}
 }
