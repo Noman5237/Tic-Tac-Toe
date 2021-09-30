@@ -25,7 +25,7 @@ public class Theme {
 	}
 	
 	public static Theme loadTheme(String themeName) {
-		File[] themeDir = Objects.requireNonNull(Paths.get(ApplicationManager.getInstance().getApplicationStoragePath(), "Themes", themeName).toFile().listFiles());
+		File[] themeDir = Objects.requireNonNull(Paths.get(ApplicationManager.getInstance().getApplicationConfiguration().getApplicationStoragePath(), "Themes", themeName).toFile().listFiles());
 		var themePaths = new Object() {
 			private String stylesheetPath;
 			private String boardPath;

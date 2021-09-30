@@ -1,6 +1,6 @@
 package game.tictactoe.models;
 
-import game.tictactoe.models.states.CellState;
+import game.tictactoe.states.CellState;
 
 public class Move {
 	
@@ -15,14 +15,14 @@ public class Move {
 	}
 	
 	public int getX() {
-		return x;
+		return this.x;
 	}
 	
 	public int getY() {
-		return y;
+		return this.y;
 	}
 	
 	public CellState getCellState() {
-		return cellState;
+		return this.cellState;
 	}
 }

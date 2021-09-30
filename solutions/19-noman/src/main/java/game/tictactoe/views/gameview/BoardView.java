@@ -3,7 +3,7 @@ package game.tictactoe.views.gameview;
 import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.models.Board;
 import game.tictactoe.models.Theme;
-import game.tictactoe.models.states.CellState;
+import game.tictactoe.states.CellState;
 import game.tictactoe.views.ResizableView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,7 +24,7 @@ public class BoardView implements ResizableView {
 	private Affine affine;
 	
 	public BoardView(double width, double height) {
-		this.applicationTheme = ApplicationManager.getInstance().getTheme();
+		this.applicationTheme = ApplicationManager.getInstance().getApplicationConfiguration().getTheme();
 		this.canvas = new Canvas(width, height);
 		
 		// graphics context

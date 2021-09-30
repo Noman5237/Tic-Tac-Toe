@@ -1,6 +1,6 @@
 package game.tictactoe.views.gameview;
 
-import game.tictactoe.players.Player;
+import game.tictactoe.players.Players;
 import game.tictactoe.views.ResizableView;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
@@ -10,19 +10,18 @@ public class PlayerChoiceView implements ResizableView {
 	
 	private final HBox root;
 	
-	private final ComboBox<Class<? extends Player>> player1Choices;
-	private final ComboBox<Class<? extends Player>> player2Choices;
+	private final ComboBox<Players> player1Choices;
+	private final ComboBox<Players> player2Choices;
 	
 	private final int HORIZONTAL_WEIGHT = 2;
 	
-	@SafeVarargs
-	public PlayerChoiceView(Class<? extends Player>... playerTypes) {
+	public PlayerChoiceView() {
 		this.root = new HBox();
 		this.player1Choices = new ComboBox<>();
 		this.player2Choices = new ComboBox<>();
 		
-		this.player1Choices.getItems().addAll(playerTypes);
-		this.player2Choices.getItems().addAll(playerTypes);
+		this.player1Choices.getItems().addAll(Players.values());
+		this.player2Choices.getItems().addAll(Players.values());
 		
 		this.root.getChildren().addAll(this.player1Choices, this.player2Choices);
 	}
@@ -39,11 +38,11 @@ public class PlayerChoiceView implements ResizableView {
 		return this.root;
 	}
 	
-	public ComboBox<Class<? extends Player>> getPlayer1Choices() {
+	public ComboBox<Players> getPlayer1Choices() {
 		return this.player1Choices;
 	}
 	
-	public ComboBox<Class<? extends Player>> getPlayer2Choices() {
+	public ComboBox<Players> getPlayer2Choices() {
 		return this.player2Choices;
 	}
 }

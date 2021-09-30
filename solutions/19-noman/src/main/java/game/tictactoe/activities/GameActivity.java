@@ -1,12 +1,14 @@
 package game.tictactoe.activities;
 
+import game.tictactoe.config.ApplicationConfiguration;
 import game.tictactoe.managers.ApplicationManager;
 import game.tictactoe.managers.GameManager;
 import game.tictactoe.models.Board;
-import game.tictactoe.models.states.ApplicationConfiguration;
-import game.tictactoe.models.states.CellState;
 import game.tictactoe.players.Player;
+import game.tictactoe.players.Players;
+import game.tictactoe.states.CellState;
 import game.tictactoe.views.gameview.GameView;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.ComboBox;
 
 import java.lang.reflect.InvocationTargetException;
@@ -15,6 +17,7 @@ public class GameActivity implements Activity {
 	
 	private GameView gameView;
 	private final ApplicationConfiguration applicationConfiguration;
+	private ChangeListener<Boolean> applicationConfigurationChangeListener;
 	
 	public GameActivity() {
 		this.applicationConfiguration = ApplicationManager.getInstance().getApplicationConfiguration();
@@ -33,7 +36,8 @@ public class GameActivity implements Activity {
 	}
 	
 	private void setupListeners() {
-		this.applicationConfiguration.addListener((observable, oldValue, newValue) -> this.gameView.resize(this.applicationConfiguration.getWindowWidth(), this.applicationConfiguration.getWindowHeight()));
+		this.applicationConfigurationChangeListener = (observable, oldValue, newValue) -> this.gameView.resize(this.applicationConfiguration.getWindowWidth(), this.applicationConfiguration.getWindowHeight());
+		this.applicationConfiguration.addListener(this.applicationConfigurationChangeListener);
 	}
 	
 	private void setupOnAction() {
@@ -42,15 +46,15 @@ public class GameActivity implements Activity {
 	}
 	
 	private void setupPlayerChoiceOnAction() {
-		ComboBox<Class<? extends Player>> player1Choices = this.gameView.getPlayerChoiceView().getPlayer1Choices();
+		ComboBox<Players> player1Choices = this.gameView.getPlayerChoiceView().getPlayer1Choices();
 		player1Choices.setOnAction(event -> {
-			Class<? extends Player> playerClass = player1Choices.getSelectionModel().getSelectedItem();
+			Class<? extends Player> playerClass = player1Choices.getSelectionModel().getSelectedItem().getPlayerClass();
 			GameManager.getInstance().setPlayer1(this.createPlayerInstance(playerClass, CellState.X));
 		});
 		
-		ComboBox<Class<? extends Player>> player2Choices = this.gameView.getPlayerChoiceView().getPlayer2Choices();
+		ComboBox<Players> player2Choices = this.gameView.getPlayerChoiceView().getPlayer2Choices();
 		player2Choices.setOnAction(event -> {
-			Class<? extends Player> playerClass = player2Choices.getSelectionModel().getSelectedItem();
+			Class<? extends Player> playerClass = player2Choices.getSelectionModel().getSelectedItem().getPlayerClass();
 			GameManager.getInstance().setPlayer2(this.createPlayerInstance(playerClass, CellState.O));
 		});
 	}
@@ -84,6 +88,6 @@ public class GameActivity implements Activity {
 	
 	@Override
 	public void onDestroy() {
-	
+		this.applicationConfiguration.removeListener(this.applicationConfigurationChangeListener);
 	}
 }

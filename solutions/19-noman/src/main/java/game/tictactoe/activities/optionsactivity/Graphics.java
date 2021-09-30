@@ -19,14 +19,14 @@ public class Graphics {
 	}
 	
 	private void setupThemeOptions() {
-		Arrays.asList(Objects.requireNonNull(Paths.get(ApplicationManager.getInstance().getApplicationStoragePath(), "Themes").toFile().list()))
+		Arrays.asList(Objects.requireNonNull(Paths.get(ApplicationManager.getInstance().getApplicationConfiguration().getApplicationStoragePath(), "Themes").toFile().list()))
 				.forEach(themeName -> this.graphicsView.getThemes().getItems().add(themeName));
 	}
 	
 	private void setupActions() {
 		this.graphicsView.getThemes().setOnAction(event -> {
 			String selectedTheme = this.graphicsView.getThemes().getSelectionModel().getSelectedItem();
-			ApplicationManager.getInstance().setTheme(Theme.loadTheme(selectedTheme));
+			ApplicationManager.getInstance().getApplicationConfiguration().setTheme(Theme.loadTheme(selectedTheme));
 		});
 	}
 	

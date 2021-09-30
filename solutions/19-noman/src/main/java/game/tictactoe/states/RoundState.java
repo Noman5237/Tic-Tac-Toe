@@ -1,4 +1,4 @@
-package game.tictactoe.models.states;
+package game.tictactoe.states;
 
 public enum RoundState {
 	X_WINS,
