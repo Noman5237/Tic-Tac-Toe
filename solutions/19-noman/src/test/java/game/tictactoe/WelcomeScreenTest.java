@@ -26,11 +26,4 @@ public class WelcomeScreenTest {
 		robot.clickOn("#main-play-button");
 		assertThat(ApplicationManager.getInstance().getCurrentActivity()).isInstanceOf(GameActivity.class);
 	}
-	
-	@Test
-	@DisplayName ("Game Activity starts when #main-play-button is clicked")
-	void gameActivityStartsWhenPlayButtonClickeds(FxRobot robot) {
-		robot.clickOn("#main-play-button");
-		assertThat(ApplicationManager.getInstance().getCurrentActivity()).isInstanceOf(GameActivity.class);
-	}
 }
