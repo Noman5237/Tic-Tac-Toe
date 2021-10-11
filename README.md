@@ -2,7 +2,8 @@
 
 A simple tic-tac-toe game built using JavaFX.
 
-![image](https://user-images.githubusercontent.com/31593633/126861167-04016633-59ff-4002-aec5-786967302c49.png)
+![image](https://user-images.githubusercontent.com/31593633/136845709-9d6ca10b-cebd-44d2-b658-681759247d45.png)
+
 
 ### Requirements
 
